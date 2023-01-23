@@ -51,14 +51,4 @@ return new class extends Migration
             ],
         ], ['name', 'region'], ['code', 'subcode']);
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        //
-    }
 };
