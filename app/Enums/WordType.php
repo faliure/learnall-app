@@ -15,9 +15,11 @@ enum WordType: string
     case Expression   = 'expression';
 
     case Interjection = 'interjection';
-    
+
     case Noun         = 'noun';
-    
+
+    case Number       = 'number';
+
     case Preposition  = 'preposition';
 
     case Pronoun      = 'pronoun';
