@@ -17,8 +17,11 @@ return new class extends Migration
         Schema::create('sentences', function (Blueprint $table) {
             $table->id();
             $table->string('sentence');
+            $table->string('meaning')->nullable()->comment('Approximate English meaning');
             $table->foreignIdFor(Language::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
+
+            $table->unique(['sentence', 'language_id']);
         });
     }
 

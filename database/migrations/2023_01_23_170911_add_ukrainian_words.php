@@ -17,6 +17,8 @@ return new class extends Migration
      */
     public function up()
     {
-        WordSeeder::import(Language::firstWhere('code', self::LANGUAGE_CODE), self::BATCH_NAME);
+        $language = Language::whereCode(self::LANGUAGE_CODE)->firstOrFail();
+
+        (new WordSeeder())->seed($language, self::BATCH_NAME);
     }
 };

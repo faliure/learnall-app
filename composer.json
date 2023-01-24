@@ -8,8 +8,10 @@
         "php": "^8.0.2",
         "guzzlehttp/guzzle": "^7.2",
         "jamesgordo/php-csv-parser": "^1.0",
+        "laravel/fortify": "^1.16",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
+        "laravel/telescope": "^4.12",
         "laravel/tinker": "^2.7"
     },
     "require-dev": {
@@ -55,7 +57,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                "laravel/telescope"
+            ]
         }
     },
     "config": {
