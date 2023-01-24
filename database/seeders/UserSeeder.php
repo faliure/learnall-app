@@ -15,5 +15,7 @@ class UserSeeder extends Seeder
                 'email' => 'luke@jedi.com',
             ]);
         }
+
+        User::factory(5)->create();
     }
 }
