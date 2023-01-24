@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('ping', fn () => "Pong!");
+
 Route::post('/auth/sanctum', TokenController::class);
 
 Route::middleware('auth:sanctum')->group(function () {
