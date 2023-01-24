@@ -4,26 +4,18 @@ namespace Database\Migrations\Helpers;
 
 use App\Models\Language;
 use App\Models\Word;
-use JamesGordo\CSV\Parser;
 
-class WordSeeder
+class WordSeeder extends CsvSeeder
 {
     /**
-     * Run the migrations.
-     *
-     * @return void
+     * Seed Words from a CSV file (within database/migrations/batches/words/$batchName.csv).
      */
-    public static function import(Language $language, string $batchName, string $delimiter = "|"): void
+    public function seed(Language $language, string $batchName, string $delimiter = "|"): void
     {
         $languageId = $language->getKey();
+        $pathToCsv = dirname(__DIR__) . '/batches/words/' . $batchName . '.csv';
 
-        $parser = new Parser();
-        $parser->setCsv(dirname(__DIR__) . '/batches/words/' . $batchName . '.csv');
-        $parser->setDelimeter($delimiter);
-        $parser->parse();
-
-        $words = collect($parser->all())
-            ->map(fn ($word) => array_map('trim', (array) $word))
+        $words = self::parseCsv($pathToCsv, $delimiter)
             ->map(fn ($word) => $word + ['language_id' => $languageId])
             ->map(fn ($word) => array_map(fn ($value) => $value ?: null, $word))
             ->all();
