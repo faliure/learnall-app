@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\Auth\TokenController;
+use App\Http\Controllers\CRUD\LanguageController;
+use App\Http\Controllers\CRUD\SentenceController;
+use App\Http\Controllers\CRUD\UserController;
+use App\Http\Controllers\CRUD\WordController;
 use App\Http\Resources\UserResource;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +26,12 @@ Route::post('/auth/sanctum', TokenController::class);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', fn () => new UserResource(Auth::user()));
-    Route::get('/users', fn () => UserResource::collection(User::all()));
-    Route::get('/users/{user}', fn (User $user) => new UserResource($user));
+
 });
+
+Route::apiResources([
+    '/users'     => UserController::class,
+    '/languages' => LanguageController::class,
+    '/words'     => WordController::class,
+    '/sentences' =>  SentenceController::class,
+]);

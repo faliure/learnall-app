@@ -31,4 +31,9 @@ class Language extends Model
         return $this->hasMany(Language::class, 'name', 'name')
             ->where('id', '!=', $this->id);
     }
+
+    public function getLongNameAttribute(): string
+    {
+        return $this->region ? "{$this->name} ({$this->region})" : $this->name;
+    }
 }
