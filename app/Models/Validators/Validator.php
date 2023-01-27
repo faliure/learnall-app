@@ -16,11 +16,11 @@ trait Validator
 
     private static array $handledEvents = [
         'creating',
-        'updating', 
+        'updating',
         'deleting',
         'saving',
-        'restoring', 
-        'replicating', 
+        'restoring',
+        'replicating',
     ];
 
     public function initializeValidator(): void
@@ -28,6 +28,15 @@ trait Validator
         $this->validator = $this->getValidator();
 
         $this->setValidatorEventHandlers();
+    }
+
+    public function getValidationRules(): array
+    {
+        if (is_callable([$this->validator, 'rules'])) {
+            return call_user_func([$this->validator, 'rules']);
+        }
+
+        return $this->validator->rules ?? $this->validationRules ?? [];
     }
 
     public function validationErrors(): ?MessageBag
@@ -59,15 +68,6 @@ trait Validator
         if ($validationRules && ! is_callable([$this->validator, 'saving'])) {
             static::saving(fn() => $this->validate($validationRules));
         }
-    }
-
-    private function getValidationRules(): array
-    {
-        if (is_callable([$this->validator, 'rules'])) {
-            return $this->validator->rules();
-        }
-
-        return $this->validator->rules ?? $this->validationRules ?? [];
     }
 
     private function validate(array $rules): bool

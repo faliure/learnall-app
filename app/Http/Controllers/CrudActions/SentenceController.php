@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\CRUD;
+namespace App\Http\Controllers\CrudActions;
 
-use App\Http\Resources\LanguageResource;
-use App\Models\Language;
+use App\Http\Resources\SentenceResource;
+use App\Models\Sentence;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class LanguageController extends Controller
+class SentenceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,9 @@ class LanguageController extends Controller
      */
     public function index()
     {
-        return LanguageResource::collection(Language::all());
+        return SentenceResource::collection(
+            Sentence::with('language')->get()
+        );
     }
 
     /**
@@ -27,45 +29,45 @@ class LanguageController extends Controller
      */
     public function store(Request $request)
     {
-        $language = Language::create($request->all());
+        $sentence = Sentence::create($request->all());
 
-        return $this->show($language);
+        return $this->show($sentence);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Language  $language
+     * @param  \App\Models\Sentence  $sentence
      * @return \Illuminate\Http\Response
      */
-    public function show(Language $language)
+    public function show(Sentence $sentence)
     {
-        return new LanguageResource($language);
+        return new SentenceResource($sentence);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Language  $language
+     * @param  \App\Models\Sentence  $sentence
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Language $language)
+    public function update(Request $request, Sentence $sentence)
     {
-        $language->update($request->all());
+        $sentence->update($request->all());
 
-        return $this->show($language);
+        return $this->show($sentence);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Language  $language
+     * @param  \App\Models\Sentence  $sentence
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Language $language)
+    public function destroy(Sentence $sentence)
     {
-        $language->delete();
+        $sentence->delete();
 
         return response()->json([], Response::HTTP_NO_CONTENT);
     }

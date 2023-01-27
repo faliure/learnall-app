@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\CRUD;
+namespace App\Http\Controllers\CrudActions;
 
-use App\Http\Resources\SentenceResource;
-use App\Models\Sentence;
+use App\Http\Resources\WordResource;
+use App\Models\Word;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class SentenceController extends Controller
+class WordController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class SentenceController extends Controller
      */
     public function index()
     {
-        return SentenceResource::collection(
-            Sentence::with('language')->get()
+        return WordResource::collection(
+            Word::with('language')->get()
         );
     }
 
@@ -29,45 +29,45 @@ class SentenceController extends Controller
      */
     public function store(Request $request)
     {
-        $sentence = Sentence::create($request->all());
+        $word = Word::create($request->all());
 
-        return $this->show($sentence);
+        return $this->show($word);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Sentence  $sentence
+     * @param  \App\Models\Word  $word
      * @return \Illuminate\Http\Response
      */
-    public function show(Sentence $sentence)
+    public function show(Word $word)
     {
-        return new SentenceResource($sentence);
+        return new WordResource($word);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Sentence  $sentence
+     * @param  \App\Models\Word  $word
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sentence $sentence)
+    public function update(Request $request, Word $word)
     {
-        $sentence->update($request->all());
+        $word->update($request->all());
 
-        return $this->show($sentence);
+        return $this->show($word);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Sentence  $sentence
+     * @param  \App\Models\Word  $word
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sentence $sentence)
+    public function destroy(Word $word)
     {
-        $sentence->delete();
+        $word->delete();
 
         return response()->json([], Response::HTTP_NO_CONTENT);
     }

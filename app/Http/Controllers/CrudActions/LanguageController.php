@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\CRUD;
+namespace App\Http\Controllers\CrudActions;
 
-use App\Http\Resources\UserResource;
-use App\Models\User;
+use App\Http\Resources\LanguageResource;
+use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class UserController extends Controller
+class LanguageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return UserResource::collection(User::all());
+        return LanguageResource::collection(Language::all());
     }
 
     /**
@@ -27,45 +27,45 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::create($request->all());
+        $language = Language::create($request->all());
 
-        return $this->show($user);
+        return $this->show($language);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Language  $language
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Language $language)
     {
-        return new UserResource($user);
+        return new LanguageResource($language);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Language  $language
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Language $language)
     {
-        $user->update($request->all());
+        $language->update($request->all());
 
-        return $this->show($user);
+        return $this->show($language);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Language  $language
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Language $language)
     {
-        $user->delete();
+        $language->delete();
 
         return response()->json([], Response::HTTP_NO_CONTENT);
     }

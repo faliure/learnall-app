@@ -1,12 +1,11 @@
 <?php
 
 use App\Http\Controllers\Auth\TokenController;
-use App\Http\Controllers\CRUD\LanguageController;
-use App\Http\Controllers\CRUD\SentenceController;
-use App\Http\Controllers\CRUD\UserController;
-use App\Http\Controllers\CRUD\WordController;
+use App\Http\Controllers\CrudActions\LanguageController;
+use App\Http\Controllers\CrudActions\SentenceController;
+use App\Http\Controllers\CrudActions\UserController;
+use App\Http\Controllers\CrudActions\WordController;
 use App\Http\Resources\UserResource;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 

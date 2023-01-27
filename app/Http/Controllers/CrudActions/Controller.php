@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\CRUD;
+namespace App\Http\Controllers\CrudActions;
 
 use App\Http\Controllers\Controller as BaseController;
 
