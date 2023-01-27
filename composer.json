@@ -9,11 +9,12 @@
         "guzzlehttp/guzzle": "^7.2",
         "inertiajs/inertia-laravel": "^0.6.8",
         "jamesgordo/php-csv-parser": "^1.0",
-        "laravel/fortify": "^1.16",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.2",
         "laravel/telescope": "^4.12",
         "laravel/tinker": "^2.7",
+        "pestphp/pest": "^1.16",
+        "pestphp/pest-plugin-laravel": "^1.1",
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
@@ -60,9 +61,7 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": [
-                "laravel/telescope"
-            ]
+            "dont-discover": []
         }
     },
     "config": {

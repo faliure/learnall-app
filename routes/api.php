@@ -6,6 +6,7 @@ use App\Http\Controllers\CRUD\SentenceController;
 use App\Http\Controllers\CRUD\UserController;
 use App\Http\Controllers\CRUD\WordController;
 use App\Http\Resources\UserResource;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,5 +34,5 @@ Route::apiResources([
     '/users'     => UserController::class,
     '/languages' => LanguageController::class,
     '/words'     => WordController::class,
-    '/sentences' =>  SentenceController::class,
+    '/sentences' => SentenceController::class,
 ]);
