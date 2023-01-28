@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Contracts\JsonResourceable as JsonResourceableContract;
 use App\Models\Traits\JsonResourceable;
 use App\Models\Validators\Validator;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 
-class Model extends EloquentModel
+class Model extends EloquentModel implements JsonResourceableContract
 {
     use JsonResourceable;
     use Validator;
