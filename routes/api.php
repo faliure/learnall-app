@@ -32,6 +32,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
 });
 
+/**
+ * CRUD Actions
+ */
 Route::apiResources([
     '/exercises' => ExerciseController::class,
     '/languages' => LanguageController::class,

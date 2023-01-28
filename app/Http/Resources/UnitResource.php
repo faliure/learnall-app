@@ -20,6 +20,7 @@ class UnitResource extends JsonResource
             'meaning'     => $this->meaning,
             'language_id' => $this->language_id,
             'language'    => $this->language->longName,
+            'lessons'     => LessonResource::collection($this->lessons),
         ];
     }
 }
