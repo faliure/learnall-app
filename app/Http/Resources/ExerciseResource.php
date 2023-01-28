@@ -20,7 +20,7 @@ class ExerciseResource extends JsonResource
             'answer'      => $this->answer,
             'language_id' => $this->language_id,
             'language'    => $this->language->longName,
-            'inLessons'   => $this->lessons()->count(),
+            'lessons'     => LessonResource::collection($this->whenLoaded('lessons')),
         ];
     }
 }

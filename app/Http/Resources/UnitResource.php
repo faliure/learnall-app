@@ -21,7 +21,7 @@ class UnitResource extends JsonResource
             'description' => $this->description,
             'language_id' => $this->language_id,
             'language'    => $this->language->longName,
-            'lessons'     => LessonResource::collection($this->lessons),
+            'lessons'     => LessonResource::collection($this->whenLoaded('lessons')),
         ];
     }
 }

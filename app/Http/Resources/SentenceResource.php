@@ -20,6 +20,7 @@ class SentenceResource extends JsonResource
             'meaning'     => $this->meaning,
             'language_id' => $this->language_id,
             'language'    => $this->language->longName,
+            'words'       => WordResource::collection($this->whenLoaded('words')),
         ];
     }
 }

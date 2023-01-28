@@ -1,5 +1,6 @@
 <?php
 
+use App\Extensions\Inertia\InertiaResource;
 use App\Http\Controllers\Web\MeController;
 use App\Models\Lesson;
 use App\Models\Unit;
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/{learn?}', fn () => inertia('Learn', [
-    'units' => Unit::resourcesDataArray(),
+    'units' => new InertiaResource(Unit::class),
 ]))->name('learn')->whereIn('learn', ['', 'learn']);
 
 Route::get('/practice', fn () => inertia('Practice', [
@@ -25,11 +26,11 @@ Route::get('/practice', fn () => inertia('Practice', [
 ]))->name('practice');
 
 Route::get('/units/{unit:slug}', fn (Unit $unit) => inertia('Unit', [
-    'unit' => $unit->toResourceArray(),
+    'unit' => new InertiaResource($unit->load('lessons')),
 ]))->name('unit');
 
 Route::get('/lessons/{lesson}', fn (Lesson $lesson) => inertia('Lesson', [
-    'lesson' => $lesson->toResourceArray(),
+    'lesson' => new InertiaResource($lesson->load('exercises')),
 ]))->name('lesson');
 
 Route::middleware('auth')->group(function () {
