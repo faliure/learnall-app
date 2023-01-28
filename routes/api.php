@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\Auth\TokenController;
+use App\Http\Controllers\CrudActions\ExerciseController;
 use App\Http\Controllers\CrudActions\LanguageController;
+use App\Http\Controllers\CrudActions\LessonController;
 use App\Http\Controllers\CrudActions\SentenceController;
+use App\Http\Controllers\CrudActions\UnitController;
 use App\Http\Controllers\CrudActions\UserController;
 use App\Http\Controllers\CrudActions\WordController;
 use App\Http\Resources\UserResource;
@@ -30,8 +33,11 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::apiResources([
-    '/users'     => UserController::class,
+    '/exercises' => ExerciseController::class,
     '/languages' => LanguageController::class,
-    '/words'     => WordController::class,
+    '/lessons'   => LessonController::class,
     '/sentences' => SentenceController::class,
+    '/units'     => UnitController::class,
+    '/users'     => UserController::class,
+    '/words'     => WordController::class,
 ]);

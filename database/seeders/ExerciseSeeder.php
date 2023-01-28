@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
+use App\Models\Exercise;
 use Illuminate\Database\Seeder;
 
-class CategorySeeder extends Seeder
+class ExerciseSeeder extends Seeder
 {
     public function run()
     {
-        Category::factory()->count(5)->create();
+        Exercise::factory()->count(30)->create();
     }
 }

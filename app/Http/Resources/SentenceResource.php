@@ -16,10 +16,10 @@ class SentenceResource extends JsonResource
     {
         return [
             'id'          => $this->id,
-            'language_id' => $this->language_id,
-            'language'    => $this->language->longName,
             'sentence'    => $this->sentence,
             'meaning'     => $this->meaning,
+            'language_id' => $this->language_id,
+            'language'    => $this->language->longName,
         ];
     }
 }

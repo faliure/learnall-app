@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class WordResource extends JsonResource
+class ExerciseResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +16,11 @@ class WordResource extends JsonResource
     {
         return [
             'id'          => $this->id,
-            'word'        => $this->word,
-            'meaning'     => $this->meaning,
+            'question'    => $this->question,
+            'answer'      => $this->answer,
             'language_id' => $this->language_id,
             'language'    => $this->language->longName,
+            'inLessons'   => $this->lessons()->count(),
         ];
     }
 }

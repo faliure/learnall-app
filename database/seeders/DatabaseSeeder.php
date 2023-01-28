@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             WordSeeder::class,
             SentenceSeeder::class,
+            ExerciseSeeder::class,
         ]);
     }
 }

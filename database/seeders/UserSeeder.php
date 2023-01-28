@@ -16,6 +16,6 @@ class UserSeeder extends Seeder
             ]);
         }
 
-        User::factory(5)->create();
+        User::factory()->count(5)->create();
     }
 }

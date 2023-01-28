@@ -12,7 +12,7 @@ class SentenceSeeder extends Seeder
     {
         $categories = Category::pluck('name');
 
-        Sentence::factory(10)->create()->each(
+        Sentence::factory()->count(10)->create()->each(
             fn (Sentence $sentence) => $categories->random(random_int(0, 3))->each(
                 fn (string $categoryName) => $sentence
                     ->categorizeAs($categoryName)

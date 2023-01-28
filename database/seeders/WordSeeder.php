@@ -12,7 +12,7 @@ class WordSeeder extends Seeder
     {
         $categories = Category::pluck('name');
 
-        Word::factory(10)->create()->each(
+        Word::factory()->count(10)->create()->each(
             fn (Word $word) => $categories->random(random_int(0, 3))->each(
                 fn (string $categoryName) => $word
                     ->categorizeAs($categoryName)
