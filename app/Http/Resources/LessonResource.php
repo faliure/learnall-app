@@ -21,6 +21,7 @@ class LessonResource extends JsonResource
             'language_id' => $this->unit->language_id,
             'language'    => $this->unit->language->longName,
             'unit'        => new JsonResource($this->unit),
+            'exercises'   => JsonResource::collection($this->exercises),
         ];
     }
 }

@@ -16,8 +16,9 @@ class UnitResource extends JsonResource
     {
         return [
             'id'          => $this->id,
-            'sentence'    => $this->sentence,
-            'meaning'     => $this->meaning,
+            'slug'        => $this->slug,
+            'name'        => $this->name,
+            'description' => $this->description,
             'language_id' => $this->language_id,
             'language'    => $this->language->longName,
             'lessons'     => LessonResource::collection($this->lessons),

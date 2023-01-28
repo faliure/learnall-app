@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\Web\MeController;
-use Illuminate\Foundation\Application;
+use App\Models\Lesson;
+use App\Models\Unit;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,18 +16,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return inertia('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/{learn?}', fn () => inertia('Learn', [
+    'units' => Unit::resourcesDataArray(),
+]))->name('learn')->whereIn('learn', ['', 'learn']);
 
-Route::get('/dashboard', function () {
-    return inertia('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/practice', fn () => inertia('Practice', [
+    'dummy' => '',
+]))->name('practice');
+
+Route::get('/units/{unit:slug}', fn (Unit $unit) => inertia('Unit', [
+    'unit' => $unit->toResourceArray(),
+]))->name('unit');
+
+Route::get('/lessons/{lesson}', fn (Lesson $lesson) => inertia('Lesson', [
+    'lesson' => $lesson->toResourceArray(),
+]))->name('lesson');
 
 Route::middleware('auth')->group(function () {
     Route::get('/me', [ MeController::class, 'edit' ])->name('me.edit');
