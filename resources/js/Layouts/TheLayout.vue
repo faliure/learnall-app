@@ -11,11 +11,11 @@ import TheHighlights from '@/Layouts/TheHighlights.vue';
 
     <TheSidebar />
 
-    <div class="content">
+    <div class="content mx-6">
       <slot />
     </div>
 
-    <TheHighlights class="mt-10 text-center" />
+    <TheHighlights />
 
     <TheFooter />
   </div>
@@ -25,39 +25,48 @@ import TheHighlights from '@/Layouts/TheHighlights.vue';
   html, body {
     margin: 0;
     padding: 0;
+    background-color: #fefefe;
   }
 
   .wrapper {
     display: grid;
     grid-template-areas:
-      "empty header header header header"
-      "empty_left sidebar content highlights empty_right"
-      "footer footer footer footer footer";
+      ". header header header ."
+      ". sidebar content highlights ."
+      ". footer footer footer .";
     /* Only expand middle section vertically (content and sidebars) */
-    grid-template-rows: 10fr 100fr 5fr;
+    grid-template-rows: 0fr 5fr 0fr;
     /* 100% width, but static widths for content and sidebars */
-    grid-template-columns: 1fr 240px 660px 380px 1fr;
+    grid-template-columns: 1fr 260px 600px 380px 1fr;
     /* Force grid to be at least the height of the screen */
-    min-height: 100vh;
+    min-height: 1vh;
+  }
+
+  .sticky-content {
+    bottom: 2.2rem;
+    padding: calc(5.5rem + 10px) 10px 10px;
+    margin-top: calc(0px - 5.5rem);
+  }
+
+  .header {
+    grid-area: header;
+  }
+
+  .sidebar {
+    grid-area: sidebar;
+    font-family: din-round, sans-serif;
   }
 
   .content {
     grid-area: content;
   }
 
-  .sticky-spacer {
-    flex-grow: 1;
+  .highlights {
+    grid-area: highlights;
   }
 
-  .sticky-content {
-    position: sticky;
-    bottom: 2.2rem;
-    min-height: calc(100vh - 2.2rem);
-    box-sizing: border-box;
-    padding:
-      calc(5.5rem + 10px)
-      10px
-      10px;
-    margin-top: calc(0px - 5.5rem);
+  .footer {
+    grid-area: footer;
+    bottom: 0;
   }
 </style>

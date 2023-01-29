@@ -1,21 +1,8 @@
-<script setup>
-</script>
-
 <template>
-  <div class="highlights">
-    <div class="sticky-spacer"></div>
-    <div class="sticky-content">
-      Right Sidebar
+  <section class="sticky-content highlights top-14 p-6 pb-16">
+    <div class="sticky top-40 text-center border border-gray-200 rounded-xl text-2xl text-gray-300 py-16 mt-1 h-1/3">
+      <div class="uppercase">Right Sidebar</div>
+      <div class=" text-base">(reserved)</div>
     </div>
-  </div>
+  </section>
 </template>
-
-<style scoped>
-  .highlights {
-    grid-area: highlights;
-    display: flex;
-    flex-direction: column;
-    position: sticky;
-    top: 0;
-  }
-</style>

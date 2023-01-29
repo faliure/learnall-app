@@ -1,37 +1,24 @@
 <script setup>
-import { ref } from 'vue';
-import SidebarLink from '@/Components/SidebarLink.vue';
+  import SidebarLink from '@/Components/SidebarLink.vue';
+  import LearnIcon from '@/Components/Icons/Learn.vue';
+  import PracticeIcon from '@/Components/Icons/Practice.vue';
+  import LeaderboardIcon from '@/Components/Icons/Leaderboard.vue';
+  import ShopIcon from '@/Components/Icons/Shop.vue';
+  import SchoolsIcon from '@/Components/Icons/Schools.vue';
 
-const links = ref([
-    { "label": "Learn", "target": "/learn", "icon": "https://d35aaqx5ub95lt.cloudfront.net/vendor/784035717e2ff1d448c0f6cc4efc89fb.svg" },
-    { "label": "Practice", "target": "/practice", "icon": "https://d35aaqx5ub95lt.cloudfront.net/vendor/5187f6694476a769d4a4e28149867e3e.svg" },
-    { "label": "Leaderboard", "target": "/leaderboard", "icon": "https://d35aaqx5ub95lt.cloudfront.net/vendor/ca9178510134b4b0893dbac30b6670aa.svg" },
-    { "label": "Shop", "target": "/shop", "icon": "https://d35aaqx5ub95lt.cloudfront.net/vendor/0e58a94dda219766d98c7796b910beee.svg" },
-    { "label": "Schools", "target": "/schools", "icon": "https://d35aaqx5ub95lt.cloudfront.net/vendor/3390675b86eeeab0b4119ccfcb5b186e.svg" }
-]);
+  const links = [
+      { label: "Learn", target: "/learn", component: 'Learn', icon: LearnIcon },
+      { label: "Practice", target: "/practice", component: 'Practice', icon: PracticeIcon },
+      { label: "Leaderboard", target: "/leaderboard", component: 'Leaderboard', icon: LeaderboardIcon },
+      { label: "Shop", target: "/shop", component: 'Shop', icon: ShopIcon },
+      { label: "Schools", target: "/schools", component: 'Schools', icon: SchoolsIcon }
+  ];
 </script>
 
 <template>
-  <div class="sidebar mt-10">
-    <div class="sticky-spacer"></div>
-    <div class="sticky-content">
-      <SidebarLink
-        v-for="link in links"
-        :key="link.label"
-        :link="link" />
+  <section class="sidebar">
+    <div class="sticky-content sticky top-14 text-base uppercase font-bold tracking-wider">
+      <SidebarLink v-for="link in links" :link="link" />
     </div>
-  </div>
+  </section>
 </template>
-
-<style scoped>
-  .sidebar {
-    grid-area: sidebar;
-    position: sticky;
-    top: 10px;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: .8px;
-    text-transform: uppercase;
-    font-family: din-round, sans-serif;
-  }
-</style>

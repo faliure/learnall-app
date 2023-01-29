@@ -1,14 +1,7 @@
-<script lang="ts">
-  import TheLayout from '@/Layouts/TheLayout.vue';
+<script setup>
   import UnitPreview from '@/Components/UnitPreview.vue';
 
-  export default {
-    components: { UnitPreview },
-
-    props: { units: Array },
-
-    layout: TheLayout,
-  };
+  defineProps({ units: Array });
 </script>
 
 <template>

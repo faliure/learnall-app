@@ -1,14 +1,7 @@
-<script lang="ts">
-  import TheLayout from '@/Layouts/TheLayout.vue';
+<script setup>
   import LessonPreview from '@/Components/LessonPreview.vue';
 
-  export default {
-    components: { LessonPreview },
-
-    props: { unit: Object },
-
-    layout: TheLayout,
-  };
+  defineProps({ unit: Object});
 </script>
 
 <template>
