@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\CrudActions;
+namespace App\Http\Controllers\Crud;
 
 use App\Extensions\Laravel\CrudController;
 use App\Http\Requests\StoreExerciseRequest;

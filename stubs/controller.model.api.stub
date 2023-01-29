@@ -1,6 +1,6 @@
 <?php
 
-namespace {{ namespace }}\CrudActions;
+namespace {{ namespace }}\Crud;
 
 use App\Extensions\Laravel\CrudController;
 use App\Http\Resources\{{ model }}Resource;

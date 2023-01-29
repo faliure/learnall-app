@@ -1,13 +1,13 @@
 <?php
 
 use App\Http\Controllers\Auth\TokenController;
-use App\Http\Controllers\CrudActions\ExerciseController;
-use App\Http\Controllers\CrudActions\LanguageController;
-use App\Http\Controllers\CrudActions\LessonController;
-use App\Http\Controllers\CrudActions\SentenceController;
-use App\Http\Controllers\CrudActions\UnitController;
-use App\Http\Controllers\CrudActions\UserController;
-use App\Http\Controllers\CrudActions\WordController;
+use App\Http\Controllers\Crud\ExerciseController;
+use App\Http\Controllers\Crud\LanguageController;
+use App\Http\Controllers\Crud\LessonController;
+use App\Http\Controllers\Crud\SentenceController;
+use App\Http\Controllers\Crud\UnitController;
+use App\Http\Controllers\Crud\UserController;
+use App\Http\Controllers\Crud\WordController;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
