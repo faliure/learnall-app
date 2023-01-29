@@ -10,6 +10,30 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 trait JsonResourceable
 {
+    /**
+     * Convert the current Model to its corresponding JsonResourse.
+     */
+    public function resource(): JsonResource
+    {
+        $resourceClass = static::resourceClass();
+
+        return new $resourceClass($this);
+    }
+
+    /**
+     * Create a ResourceCollection with items of this Model.
+     */
+    public static function resources(): ResourceCollection
+    {
+        return static::resourcesBuilder()->get();
+    }
+
+    /**
+     * Get a CustomBuilder that converts the results to a JsonResource (for
+     * singular results, e.g. first) or a ResourceCollection of them.
+     *
+     * e.g. User::resourcesBuilder()->where(...)->get()
+     */
     public static function resourcesBuilder(): CustomBuilder
     {
         return (new CustomBuilder(static::class))
@@ -23,24 +47,6 @@ trait JsonResourceable
     }
 
     /**
-     * Create a ResourceCollection with items of this Model.
-     */
-    public static function resources(): ResourceCollection
-    {
-        return static::resourcesBuilder()->get();
-    }
-
-    /**
-     * Convert the current Model to its corresponding JsonResourse.
-     */
-    public function resource(): JsonResource
-    {
-        $resourceClass = static::resourceClass();
-
-        return new $resourceClass($this);
-    }
-
-    /**
      * Array/Json representation based on the corresponding JsonResource
      * definition (may be overriden in JsonResourceable Model as needed).
      */
@@ -49,7 +55,7 @@ trait JsonResourceable
         return $this->resource()->resolve(new Request());
     }
 
-    private static function resourceClass(): string
+    protected static function resourceClass(): string
     {
         $modelClass    = class_basename(static::class);
         $resourceClass = "\\App\\Http\\Resources\\{$modelClass}Resource";

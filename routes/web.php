@@ -41,7 +41,7 @@ Route::get('/lessons/{lesson}', fn (Lesson $lesson) => inertia('Lesson', [
     'lesson' => new InertiaResource($lesson->load('exercises')),
 ]))->name('lesson');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:web')->group(function () {
     Route::get('/me', [ MeController::class, 'edit' ])->name('me.edit');
     Route::patch('/me', [ MeController::class, 'update' ])->name('me.update');
     Route::delete('/me', [ MeController::class, 'destroy' ])->name('me.destroy');

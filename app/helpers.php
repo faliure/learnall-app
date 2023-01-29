@@ -12,7 +12,7 @@ use Illuminate\Support\Arr;
  */
 function currentUser(): ?User
 {
-    return me();
+    return auth()->user();
 }
 
 /**
@@ -20,7 +20,7 @@ function currentUser(): ?User
  */
 function me(): ?User
 {
-    return auth()->user();
+    return currentUser();
 }
 
 /**
@@ -28,7 +28,15 @@ function me(): ?User
  */
 function my(string $property)
 {
-    return me()->$property;
+    return currentUser()->$property ?? null;
+}
+
+/**
+ * TODO : remove and replace callers once Roles are implemented.
+ */
+function isAdmin()
+{
+    return my('id') === 1;
 }
 
 /**
