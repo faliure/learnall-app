@@ -8,10 +8,10 @@
     <section class="flex justify-between w-full">
       <LearnAllIcon class=" w-64 -mt-1" />
 
-      <div v-if="$page.props.user" class="p-3 pt-1 text-right">
+      <div v-if="$page.props.user" class="p-3 pt-1 text-right flex-auto">
         <div class="text-xs mb-3 text-gray-800">Welcome, {{ $page.props.user.name }} !</div>
         <Link
-          class="block mt-2 px-2 py-1 text-center text-blue-100 no-underline bg-blue-500 rounded hover:bg-blue-600 hover:text-blue-200"
+          class="block px-2 w-20 py-1 text-center float-right text-blue-100 no-underline bg-blue-500 rounded hover:bg-blue-600 hover:text-blue-200"
           href="/logout" method="post">Logout</Link>
       </div>
 
