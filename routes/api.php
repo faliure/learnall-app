@@ -28,7 +28,7 @@ Route::get('ping', fn () => "Pong!");
 Route::post('/auth/sanctum', TokenController::class);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/me', fn () => new UserResource(Auth::user()));
+    Route::get('/me', fn () => new UserResource(me()));
 
 });
 

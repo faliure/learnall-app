@@ -13,7 +13,7 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::user()->id === 1; // TODO : create Roles, update this
+        return my('id') === 1; // TODO : create Roles, update this
     }
 
     /**

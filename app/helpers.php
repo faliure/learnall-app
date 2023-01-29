@@ -1,10 +1,35 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Arr;
 
 /******************************************************************************
  *** Miscellaneous Tools ******************************************************
  *****************************************************************************/
+
+/**
+ * Get the currently authenticated user, with proper type hint.
+ */
+function currentUser(): ?User
+{
+    return me();
+}
+
+/**
+ * Syntactic sugar for currentUser().
+ */
+function me(): ?User
+{
+    return auth()->user();
+}
+
+/**
+ * Get a property of the currently authenticated user.
+ */
+function my(string $property)
+{
+    return me()->$property;
+}
 
 /**
  * Get an instance of the identity function.
