@@ -21,9 +21,8 @@ Route::get('/{learn?}', fn () => inertia('Learn', [
     'units' => new InertiaResource(Unit::class),
 ]))->name('learn')->whereIn('learn', ['', 'learn']);
 
-Route::get('/practice', fn () => inertia('Practice', [
-    'dummy' => '',
-]))->name('practice');
+Route::get('/practice', fn () => inertia('Practice'))
+    ->name('practice');
 
 Route::get('/units/{unit:slug}', fn (Unit $unit) => inertia('Unit', [
     'unit' => new InertiaResource($unit->load('lessons')),

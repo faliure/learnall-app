@@ -7,6 +7,6 @@
  * Use either 'only' or 'exclude'. Using boths will disable filtering.
  */
 return [
-    // 'only' => [],
+    // 'only' => ['/', 'learn', 'practice', 'unit', 'lessons'],
     'except' => ['ignition.*', 'sanctum.*', 'telescope*'],
 ];
