@@ -1,13 +1,13 @@
-<script setup>
-import TheLayout from '@/Layouts/TheLayout.vue';
+<script lang="ts">
+  import TheLayout from '@/Layouts/TheLayout.vue';
 
-defineProps({
-  units: Array,
-})
+  export default {
+    props: { units: Array },
+
+    layout: TheLayout,
+  };
 </script>
 
 <template>
-  <TheLayout>
-    Nothing to see here.
-  </TheLayout>
+  <div>Nothing to see here.</div>
 </template>

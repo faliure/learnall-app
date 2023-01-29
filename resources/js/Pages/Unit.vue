@@ -1,14 +1,16 @@
-<script setup>
-import LessonPreview from '@/Components/LessonPreview.vue';
-import TheLayout from '@/Layouts/TheLayout.vue';
+<script lang="ts">
+  import TheLayout from '@/Layouts/TheLayout.vue';
+  import LessonPreview from '@/Components/LessonPreview.vue';
 
-defineProps({
-  unit: Object,
-});
+  export default {
+    components: { LessonPreview },
+
+    props: { unit: Object },
+
+    layout: TheLayout,
+  };
 </script>
 
 <template>
-  <TheLayout>
-    <LessonPreview v-for="lesson in unit.lessons" :key="lesson.id" :lesson="lesson" />
-  </TheLayout>
+  <LessonPreview v-for="lesson in unit.lessons" :key="lesson.id" :lesson="lesson" />
 </template>

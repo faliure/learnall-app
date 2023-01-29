@@ -26,8 +26,6 @@ const links = ref([
 <style scoped>
   .sidebar {
     grid-area: sidebar;
-    display: flex;
-    flex-direction: column;
     position: sticky;
     top: 10px;
     font-size: 15px;

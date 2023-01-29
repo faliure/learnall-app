@@ -11,7 +11,7 @@ import TheHighlights from '@/Layouts/TheHighlights.vue';
 
     <TheSidebar />
 
-    <div class="content mt-9">
+    <div class="content">
       <slot />
     </div>
 
@@ -44,6 +44,7 @@ import TheHighlights from '@/Layouts/TheHighlights.vue';
   .content {
     grid-area: content;
   }
+
   .sticky-spacer {
     flex-grow: 1;
   }

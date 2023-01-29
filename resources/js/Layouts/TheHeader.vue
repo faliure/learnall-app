@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div class="header flex items-center sticky top-0">
+  <div class="header flex items-center sticky top-0 h-20">
     <span class="not-duolingo">Not</span>
     <img src="https://d35aaqx5ub95lt.cloudfront.net/vendor/70a4be81077a8037698067f583816ff9.svg" alt="Trilingo" />
   </div>
