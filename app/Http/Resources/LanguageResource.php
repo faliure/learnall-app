@@ -21,8 +21,8 @@ class LanguageResource extends JsonResource
             'name'      => $this->name,
             'region'    => $this->region,
             'longName'  => $this->longName,
-            'words'     => $this->words()->count(),
-            'sentences' => $this->sentences()->count(),
+            'words'     => $this->resource->lazyRelation('words')->count(),
+            'sentences' => $this->resource->lazyRelation('sentences')->count(),
         ];
     }
 }

@@ -16,11 +16,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('exercise_lesson', function (Blueprint $table) {
+            $table->id();
             $table->foreignIdFor(Exercise::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Lesson::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
-
-            $table->primary(['exercise_id', 'lesson_id']);
         });
     }
 

@@ -2,70 +2,57 @@
 
 namespace App\Http\Controllers\CrudActions;
 
+use App\Extensions\Laravel\CrudController;
+use App\Http\Requests\StoreSentenceRequest;
+use App\Http\Requests\UpdateSentenceRequest;
 use App\Http\Resources\SentenceResource;
 use App\Models\Sentence;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
 
-class SentenceController extends Controller
+class SentenceController extends CrudController
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): ResourceCollection
     {
-        return SentenceResource::collection(
-            Sentence::with('language')->get()
-        );
+        return Sentence::resourcesBuilder()->with('language')->get();
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSentenceRequest $request): SentenceResource
     {
-        $sentence = Sentence::create($request->all());
+        $sentence = Sentence::create($request->validated());
 
         return $this->show($sentence);
     }
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Sentence  $sentence
-     * @return \Illuminate\Http\Response
      */
-    public function show(Sentence $sentence)
+    public function show(Sentence $sentence): SentenceResource
     {
-        return new SentenceResource($sentence);
+        return $sentence->load('language')->resource();
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Sentence  $sentence
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sentence $sentence)
+    public function update(UpdateSentenceRequest $request, Sentence $sentence): SentenceResource
     {
-        $sentence->update($request->all());
+        $sentence->update($request->validated());
 
         return $this->show($sentence);
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Sentence  $sentence
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(Sentence $sentence)
+    public function destroy(Sentence $sentence): JsonResponse
     {
         $sentence->delete();
 

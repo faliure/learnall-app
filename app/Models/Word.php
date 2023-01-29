@@ -3,15 +3,14 @@
 namespace App\Models;
 
 use App\Enums\WordType;
+use App\Extensions\Laravel\Model;
 use App\Models\Traits\Categorizable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Word extends Model
 {
     use Categorizable;
-    use HasFactory;
 
     protected $casts = [
         'type' => WordType::class,

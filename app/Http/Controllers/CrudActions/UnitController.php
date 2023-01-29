@@ -2,70 +2,57 @@
 
 namespace App\Http\Controllers\CrudActions;
 
+use App\Extensions\Laravel\CrudController;
+use App\Http\Requests\StoreUnitRequest;
+use App\Http\Requests\UpdateUnitRequest;
 use App\Http\Resources\UnitResource;
 use App\Models\Unit;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
 
-class UnitController extends Controller
+class UnitController extends CrudController
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): ResourceCollection
     {
-        return UnitResource::collection(
-            Unit::with('language')->get()
-        );
+        return Unit::resourcesBuilder()->with('language')->get();
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUnitRequest $request): UnitResource
     {
-        $unit = Unit::create($request->all());
+        $unit = Unit::create($request->validated());
 
         return $this->show($unit);
     }
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Unit  $unit
-     * @return \Illuminate\Http\Response
      */
-    public function show(Unit $unit)
+    public function show(Unit $unit): UnitResource
     {
-        return new UnitResource($unit);
+        return $unit->load('language')->resource();
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Unit  $unit
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Unit $unit)
+    public function update(UpdateUnitRequest $request, Unit $unit): UnitResource
     {
-        $unit->update($request->all());
+        $unit->update($request->validated());
 
         return $this->show($unit);
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Unit  $unit
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(Unit $unit)
+    public function destroy(Unit $unit): JsonResponse
     {
         $unit->delete();
 

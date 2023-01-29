@@ -17,7 +17,7 @@ trait JsonResourceable
                 fn ($models) => static::resourceClass()::collection($models),
                 CustomBuilder::GET
             )->setCallback(
-                fn ($model) => $model->toResource,
+                fn ($model) => $model->resource(),
                 CustomBuilder::FIRST
             );
     }
@@ -33,7 +33,7 @@ trait JsonResourceable
     /**
      * Convert the current Model to its corresponding JsonResourse.
      */
-    public function toResource(): JsonResource
+    public function resource(): JsonResource
     {
         $resourceClass = static::resourceClass();
 
@@ -46,7 +46,7 @@ trait JsonResourceable
      */
     public function toArray(): array
     {
-        return $this->toResource()->resolve(new Request());
+        return $this->resource()->resolve(new Request());
     }
 
     private static function resourceClass(): string

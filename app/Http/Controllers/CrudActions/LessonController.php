@@ -2,70 +2,57 @@
 
 namespace App\Http\Controllers\CrudActions;
 
+use App\Extensions\Laravel\CrudController;
+use App\Http\Requests\StoreLessonRequest;
+use App\Http\Requests\UpdateLessonRequest;
 use App\Http\Resources\LessonResource;
 use App\Models\Lesson;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
 
-class LessonController extends Controller
+class LessonController extends CrudController
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): ResourceCollection
     {
-        return LessonResource::collection(
-            Lesson::with('unit')->get()
-        );
+        return Lesson::resourcesBuilder()->with('unit')->get();
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreLessonRequest $request): LessonResource
     {
-        $lesson = Lesson::create($request->all());
+        $lesson = Lesson::create($request->validated());
 
         return $this->show($lesson);
     }
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Lesson  $lesson
-     * @return \Illuminate\Http\Response
      */
-    public function show(Lesson $lesson)
+    public function show(Lesson $lesson): LessonResource
     {
-        return new LessonResource($lesson);
+        return $lesson->load('unit')->resource();
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Lesson  $lesson
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lesson $lesson)
+    public function update(UpdateLessonRequest $request, Lesson $lesson): LessonResource
     {
-        $lesson->update($request->all());
+        $lesson->update($request->validated());
 
         return $this->show($lesson);
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Lesson  $lesson
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(Lesson $lesson)
+    public function destroy(Lesson $lesson): JsonResponse
     {
         $lesson->delete();
 

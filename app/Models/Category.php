@@ -2,13 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Extensions\Laravel\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Category extends Model
 {
-    use HasFactory;
-
     public function words(): MorphToMany
     {
         return $this->morphedByMany(Word::class, 'categorizable');

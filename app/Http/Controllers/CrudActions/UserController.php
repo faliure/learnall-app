@@ -2,30 +2,31 @@
 
 namespace App\Http\Controllers\CrudActions;
 
-use App\Http\Requests\ProfileUpdateRequest;
+use App\Extensions\Laravel\CrudController;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
 
-class UserController extends Controller
+class UserController extends CrudController
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): JsonResource
+    public function index(): ResourceCollection
     {
-        return UserResource::collection(User::all());
+        return User::resources();
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): JsonResource
+    public function store(StoreUserRequest $request): UserResource
     {
-        $user = User::create($request->all());
+        $user = User::create($request->validated());
 
         return $this->show($user);
     }
@@ -33,24 +34,17 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user): JsonResource
+    public function show(User $user): UserResource
     {
-        return new UserResource($user);
+        return $user->resource();
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProfileUpdateRequest $request, User $user): JsonResource
+    public function update(UpdateUserRequest $request, User $user): UserResource
     {
-        $user->fill($request->validated());
-
-        if ($user->isDirty('email')) {
-            $user->email_verified_at = null;
-            $user->sendEmailVerificationNotification();
-        }
-
-        $user->save();
+        $user->update($request->validated());
 
         return $this->show($user);
     }

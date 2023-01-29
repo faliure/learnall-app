@@ -2,15 +2,14 @@
 
 namespace App\Models;
 
+use App\Extensions\Laravel\Model;
 use App\Models\Traits\Categorizable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Sentence extends Model
 {
     use Categorizable;
-    use HasFactory;
 
     public function language(): BelongsTo
     {

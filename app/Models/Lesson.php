@@ -2,15 +2,13 @@
 
 namespace App\Models;
 
+use App\Extensions\Laravel\Model;
 use App\Models\Pivots\ExerciseLesson;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Lesson extends Model
 {
-    use HasFactory;
-
     public function language(): BelongsTo
     {
         return $this->unit->language();
@@ -18,11 +16,13 @@ class Lesson extends Model
 
     public function unit(): BelongsTo
     {
-        return $this->belongsto(Unit::class);
+        return $this->belongsTo(Unit::class);
     }
 
     public function exercises(): BelongsToMany
     {
-        return $this->belongsToMany(Exercise::class)->using(ExerciseLesson::class);
+        return $this->belongsToMany(Exercise::class)
+            ->using(ExerciseLesson::class)
+            ->withTimestamps();
     }
 }

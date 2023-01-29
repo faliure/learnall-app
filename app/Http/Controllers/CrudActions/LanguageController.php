@@ -2,68 +2,57 @@
 
 namespace App\Http\Controllers\CrudActions;
 
+use App\Extensions\Laravel\CrudController;
+use App\Http\Requests\StoreLanguageRequest;
+use App\Http\Requests\UpdateLanguageRequest;
 use App\Http\Resources\LanguageResource;
 use App\Models\Language;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
 
-class LanguageController extends Controller
+class LanguageController extends CrudController
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): ResourceCollection
     {
-        return LanguageResource::collection(Language::all());
+        return Language::resources();
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreLanguageRequest $request): LanguageResource
     {
-        $language = Language::create($request->all());
+        $language = Language::create($request->validated());
 
         return $this->show($language);
     }
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Language  $language
-     * @return \Illuminate\Http\Response
      */
-    public function show(Language $language)
+    public function show(Language $language): LanguageResource
     {
-        return new LanguageResource($language);
+        return $language->resource();
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Language  $language
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Language $language)
+    public function update(UpdateLanguageRequest $request, Language $language): LanguageResource
     {
-        $language->update($request->all());
+        $language->update($request->validated());
 
         return $this->show($language);
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Language  $language
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(Language $language)
+    public function destroy(Language $language): JsonResponse
     {
         $language->delete();
 

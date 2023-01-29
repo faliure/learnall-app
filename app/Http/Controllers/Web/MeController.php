@@ -34,6 +34,7 @@ class MeController extends Controller
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
+            $request->user()->sendEmailVerificationNotification();
         }
 
         $request->user()->save();

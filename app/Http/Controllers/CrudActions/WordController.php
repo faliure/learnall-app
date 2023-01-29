@@ -2,70 +2,57 @@
 
 namespace App\Http\Controllers\CrudActions;
 
+use App\Extensions\Laravel\CrudController;
+use App\Http\Requests\StoreWordRequest;
+use App\Http\Requests\UpdateWordRequest;
 use App\Http\Resources\WordResource;
 use App\Models\Word;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
 
-class WordController extends Controller
+class WordController extends CrudController
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): ResourceCollection
     {
-        return WordResource::collection(
-            Word::with('language')->get()
-        );
+        return Word::resourcesBuilder()->with('language')->get();
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreWordRequest $request): WordResource
     {
-        $word = Word::create($request->all());
+        $word = Word::create($request->validated());
 
         return $this->show($word);
     }
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Word  $word
-     * @return \Illuminate\Http\Response
      */
-    public function show(Word $word)
+    public function show(Word $word): WordResource
     {
-        return new WordResource($word);
+        return $word->load('language')->resource();
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Word  $word
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Word $word)
+    public function update(UpdateWordRequest $request, Word $word): WordResource
     {
-        $word->update($request->all());
+        $word->update($request->validated());
 
         return $this->show($word);
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Word  $word
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(Word $word)
+    public function destroy(Word $word): JsonResponse
     {
         $word->delete();
 

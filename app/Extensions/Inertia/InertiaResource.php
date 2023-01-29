@@ -26,7 +26,7 @@ class InertiaResource extends JsonResource
         if ($resource instanceof JsonResource) {
             $this->wrappedResource = $resource;
         } elseif ($resource instanceof JsonResourceable) {
-            $this->wrappedResource = $resource->toResource();
+            $this->wrappedResource = $resource->resource();
         } elseif (implementsInterface($resource, JsonResourceable::class)) {
             $this->wrappedResource = $resource::resources();
         } else {

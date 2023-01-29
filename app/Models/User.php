@@ -2,16 +2,21 @@
 
 namespace App\Models;
 
+use App\Contracts\JsonResourceable as JsonResourceableContract;
+use App\Models\Traits\JsonResourceable;
+use App\Models\Validators\Validator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JsonResourceableContract
 {
     use HasApiTokens;
     use HasFactory;
+    use JsonResourceable;
     use Notifiable;
+    use Validator;
 
     /**
      * The attributes that are mass assignable.

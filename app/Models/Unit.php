@@ -2,18 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Extensions\Laravel\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Unit extends Model
 {
-    use HasFactory;
-
     public function language(): BelongsTo
     {
-        return $this->belongsto(Language::class);
+        return $this->belongsTo(Language::class);
     }
 
     public function lessons(): HasMany

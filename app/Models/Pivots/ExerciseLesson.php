@@ -3,10 +3,10 @@
 namespace App\Models\Pivots;
 
 use App\Exceptions\InvalidRelationException;
+use App\Extensions\Laravel\Pivot;
 use App\Models\Exercise;
 use App\Models\Lesson;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class ExerciseLesson extends Pivot
 {

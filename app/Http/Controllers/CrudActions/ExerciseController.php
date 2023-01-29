@@ -2,70 +2,57 @@
 
 namespace App\Http\Controllers\CrudActions;
 
+use App\Extensions\Laravel\CrudController;
+use App\Http\Requests\StoreExerciseRequest;
+use App\Http\Requests\UpdateExerciseRequest;
 use App\Http\Resources\ExerciseResource;
 use App\Models\Exercise;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
 
-class ExerciseController extends Controller
+class ExerciseController extends CrudController
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): ResourceCollection
     {
-        return ExerciseResource::collection(
-            Exercise::with('language')->get()
-        );
+        return Exercise::resourcesBuilder()->with('language')->get();
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreExerciseRequest $request): ExerciseResource
     {
-        $exercise = Exercise::create($request->all());
+        $exercise = Exercise::create($request->validated());
 
         return $this->show($exercise);
     }
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Exercise  $exercise
-     * @return \Illuminate\Http\Response
      */
-    public function show(Exercise $exercise)
+    public function show(Exercise $exercise): ExerciseResource
     {
-        return new ExerciseResource($exercise);
+        return $exercise->load('language')->resource();
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Exercise  $exercise
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Exercise $exercise)
+    public function update(UpdateExerciseRequest $request, Exercise $exercise): ExerciseResource
     {
-        $exercise->update($request->all());
+        $exercise->update($request->validated());
 
         return $this->show($exercise);
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Exercise  $exercise
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(Exercise $exercise)
+    public function destroy(Exercise $exercise): JsonResponse
     {
         $exercise->delete();
 
