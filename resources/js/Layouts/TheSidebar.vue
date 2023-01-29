@@ -3,15 +3,15 @@
   import LearnIcon from '@/Components/Icons/Learn.vue';
   import PracticeIcon from '@/Components/Icons/Practice.vue';
   import LeaderboardIcon from '@/Components/Icons/Leaderboard.vue';
-  import ShopIcon from '@/Components/Icons/Shop.vue';
-  import SchoolsIcon from '@/Components/Icons/Schools.vue';
+  import StatsIcon from '@/Components/Icons/Stats.vue';
+  import ExploreIcon from '@/Components/Icons/Explore.vue';
 
   const links = [
       { label: "Learn", target: "/learn", component: 'Learn', icon: LearnIcon },
       { label: "Practice", target: "/practice", component: 'Practice', icon: PracticeIcon },
       { label: "Leaderboard", target: "/leaderboard", component: 'Leaderboard', icon: LeaderboardIcon },
-      { label: "Shop", target: "/shop", component: 'Shop', icon: ShopIcon },
-      { label: "Schools", target: "/schools", component: 'Schools', icon: SchoolsIcon }
+      { label: "Explore", target: "/explore", component: 'Explore', icon: ExploreIcon },
+      { label: "Stats", target: "/stats", component: 'Stats', icon: StatsIcon },
   ];
 </script>
 

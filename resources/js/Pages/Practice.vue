@@ -2,5 +2,5 @@
 </script>
 
 <template>
-  <div>This is page {{ $page.component }}</div>
+  <div>This is the {{ $page.component }} page</div>
 </template>

@@ -27,11 +27,11 @@ Route::get('/practice', fn () => inertia('Practice'))
 Route::get('/leaderboard', fn () => inertia('Leaderboard'))
     ->name('leaderboard');
 
-Route::get('/shop', fn () => inertia('Shop'))
-    ->name('shop');
+Route::get('/explore', fn () => inertia('Explore'))
+    ->name('explore');
 
-Route::get('/schools', fn () => inertia('Schools'))
-    ->name('schools');
+Route::get('/stats', fn () => inertia('Stats'))
+    ->name('stats');
 
 Route::get('/units/{unit:slug}', fn (Unit $unit) => inertia('Unit', [
     'unit' => new InertiaResource($unit->load('lessons')),
