@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Extensions\Laravel\Resource;
 
-class CategoryResource extends JsonResource
+class CategoryResource extends Resource
 {
     /**
      * Transform the resource into an array.

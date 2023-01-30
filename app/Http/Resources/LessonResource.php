@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Extensions\Laravel\Resource;
 
-class LessonResource extends JsonResource
+class LessonResource extends Resource
 {
     /**
      * Transform the resource into an array.
@@ -20,8 +20,8 @@ class LessonResource extends JsonResource
             'description' => $this->description,
             'language_id' => $this->unit->language_id,
             'language'    => $this->unit->language->longName,
-            'unit'        => new JsonResource($this->whenLoaded('unit')),
-            'exercises'   => JsonResource::collection($this->whenLoaded('exercises')),
+            'unit'        => new UnitResource($this->whenLoaded('unit')),
+            'exercises'   => ExerciseResource::collection($this->whenLoaded('exercises')),
         ];
     }
 }
