@@ -19,7 +19,7 @@ class {{ class }} extends CrudController
     {
         return {{ model }}::resources();
         // or
-        return {{ model }}::resourcesBuilder()->with('relation')->get();
+        return {{ model }}::resourcesQuery()->with('relation')->get();
     }
 
     /**

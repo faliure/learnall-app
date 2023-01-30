@@ -18,7 +18,7 @@ class WordController extends CrudController
      */
     public function index(): ResourceCollection
     {
-        return Word::resourcesBuilder()->with('language')->get();
+        return Word::resourcesQuery()->with('language')->get();
     }
 
     /**

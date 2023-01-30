@@ -18,7 +18,7 @@ class CategoryController extends CrudController
      */
     public function index(): ResourceCollection
     {
-        return Category::resources();
+        return Category::resourcesQuery()->withCount('words', 'sentences')->get();
     }
 
     /**
@@ -36,7 +36,7 @@ class CategoryController extends CrudController
      */
     public function show(Category $category): CategoryResource
     {
-        return $category->resource();
+        return $category->loadCount('words', 'sentences')->resource();
     }
 
     /**

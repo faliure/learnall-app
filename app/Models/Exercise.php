@@ -25,7 +25,7 @@ class Exercise extends Model
 
     public function units(): Builder
     {
-        $lessonIdsBuilder = $this->lessons()->select('id');
+        $lessonIdsBuilder = $this->lessons()->select('lessons.id');
 
         return Unit::whereHas(
             'lessons',

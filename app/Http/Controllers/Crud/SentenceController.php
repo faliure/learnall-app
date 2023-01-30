@@ -18,7 +18,7 @@ class SentenceController extends CrudController
      */
     public function index(): ResourceCollection
     {
-        return Sentence::resourcesBuilder()->with('language')->get();
+        return Sentence::resourcesQuery()->with('language')->get();
     }
 
     /**

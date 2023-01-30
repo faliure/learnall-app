@@ -18,7 +18,7 @@ class UnitController extends CrudController
      */
     public function index(): ResourceCollection
     {
-        return Unit::resourcesBuilder()->with('language')->get();
+        return Unit::resourcesQuery()->with('language')->get();
     }
 
     /**

@@ -17,7 +17,7 @@ trait JsonResourceable
     {
         $resourceClass = static::resourceClass();
 
-        return new $resourceClass($this);
+        return $resourceClass::make($this);
     }
 
     /**
@@ -25,16 +25,16 @@ trait JsonResourceable
      */
     public static function resources(): ResourceCollection
     {
-        return static::resourcesBuilder()->get();
+        return static::resourcesQuery()->get();
     }
 
     /**
      * Get a CustomBuilder that converts the results to a JsonResource (for
      * singular results, e.g. first) or a ResourceCollection of them.
      *
-     * e.g. User::resourcesBuilder()->where(...)->get()
+     * e.g. User::resourcesQuery()->where(...)->get()
      */
-    public static function resourcesBuilder(): CustomBuilder
+    public static function resourcesQuery(): CustomBuilder
     {
         return (new CustomBuilder(static::class))
             ->setCallback(

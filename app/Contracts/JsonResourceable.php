@@ -12,5 +12,5 @@ interface JsonResourceable
 
     public static function resources(): ResourceCollection;
 
-    public static function resourcesBuilder(): CustomBuilder;
+    public static function resourcesQuery(): CustomBuilder;
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\TokenController;
+use App\Http\Controllers\Crud\CategoryController;
 use App\Http\Controllers\Crud\ExerciseController;
 use App\Http\Controllers\Crud\LanguageController;
 use App\Http\Controllers\Crud\LessonController;
@@ -9,7 +10,6 @@ use App\Http\Controllers\Crud\UnitController;
 use App\Http\Controllers\Crud\UserController;
 use App\Http\Controllers\Crud\WordController;
 use App\Http\Resources\UserResource;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,11 +35,12 @@ Route::middleware('auth:sanctum')->group(function () {
  * CRUD Actions
  */
 Route::apiResources([
-    '/exercises' => ExerciseController::class,
-    '/languages' => LanguageController::class,
-    '/lessons'   => LessonController::class,
-    '/sentences' => SentenceController::class,
-    '/units'     => UnitController::class,
-    '/users'     => UserController::class,
-    '/words'     => WordController::class,
+    '/exercises'  => ExerciseController::class,
+    '/languages'  => LanguageController::class,
+    '/lessons'    => LessonController::class,
+    '/sentences'  => SentenceController::class,
+    '/units'      => UnitController::class,
+    '/users'      => UserController::class,
+    '/words'      => WordController::class,
+    '/categories' => CategoryController::class,
 ]);

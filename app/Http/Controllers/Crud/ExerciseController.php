@@ -18,7 +18,7 @@ class ExerciseController extends CrudController
      */
     public function index(): ResourceCollection
     {
-        return Exercise::resourcesBuilder()->with('language')->get();
+        return Exercise::resourcesQuery()->with('language')->get();
     }
 
     /**

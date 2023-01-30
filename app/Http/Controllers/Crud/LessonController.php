@@ -18,7 +18,7 @@ class LessonController extends CrudController
      */
     public function index(): ResourceCollection
     {
-        return Lesson::resourcesBuilder()->with('unit')->get();
+        return Lesson::resourcesQuery()->with('unit')->get();
     }
 
     /**

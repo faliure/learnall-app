@@ -17,8 +17,8 @@ class CategoryResource extends JsonResource
         return [
             'name'      => $this->name,
             'slug'      => $this->slug,
-            'words'     => $this->resource->lazyRelation('words')->count(),
-            'sentences' => $this->resource->lazyRelation('sentences')->count(),
+            'words'     => $this->whenCounted('words'),
+            'sentences' => $this->whenCounted('sentences'),
         ];
     }
 }
