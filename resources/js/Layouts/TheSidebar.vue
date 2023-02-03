@@ -16,9 +16,7 @@
 </script>
 
 <template>
-  <section class="sidebar">
-    <div class="sticky-content sticky top-14 text-base uppercase font-bold tracking-wider">
-      <SidebarLink v-for="link in links" :link="link" />
-    </div>
-  </section>
+  <nav class="text-base uppercase font-bold tracking-wider">
+    <SidebarLink v-for="link in links" :link="link" />
+  </nav>
 </template>

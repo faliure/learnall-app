@@ -3,10 +3,11 @@
 </script>
 
 <template>
-  <div
-    class="header sticky top-0 z-10 h-24 mb-12 p-3 border-b-2 rounded-b-2xl shadow-sm shadow-black leading-6 bg-white">
+  <header
+    class="sticky top-0 z-10 h-24 p-3 border-b-2 rounded-b-xl shadow-sm shadow-black leading-6 bg-white"
+  >
     <section class="flex justify-between w-full">
-      <LearnAllIcon class=" w-64 -mt-1" />
+      <LearnAllIcon class="h-24 -mt-1" />
 
       <div v-if="$page.props.user" class="p-3 pt-1 text-right flex-auto">
         <div class="text-xs mb-3 text-gray-800">Welcome, {{ $page.props.user.name }} !</div>
@@ -20,5 +21,5 @@
         <Link href="/register">Register</Link>
       </div>
     </section>
-  </div>
+  </header>
 </template>
