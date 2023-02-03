@@ -3,6 +3,7 @@
 use App\Http\Controllers\Web\MeController;
 use App\Models\Lesson;
 use App\Models\Unit;
+use App\Models\Word;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,8 +21,9 @@ Route::get('/{learn?}', fn () => inertia('Learn', [
     'units' => Unit::resources(),
 ]))->name('learn')->whereIn('learn', ['', 'learn']);
 
-Route::get('/practice', fn () => inertia('Practice'))
-    ->name('practice');
+Route::get('/practice', fn () => inertia('Practice', [
+    'word' => Word::rand(['language_id' => 5])?->resource(),
+]))->name('practice');
 
 Route::get('/leaderboard', fn () => inertia('Leaderboard'))
     ->name('leaderboard');
