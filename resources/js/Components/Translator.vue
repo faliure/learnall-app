@@ -1,58 +1,77 @@
 <script setup>
-import { ref } from 'vue';
-import { router } from '@inertiajs/vue3'
-import PrimaryButton from '@/Bag/Components/PrimaryButton.vue';
-import Practice from './Icons/Practice.vue';
+    import { ref, onMounted } from 'vue';
+    import { router } from '@inertiajs/vue3'
+    import PrimaryButton from '@/Components/PrimaryButton.vue';
+    import Practice from './Icons/Practice.vue';
 
-const props = defineProps({
-    original: String,
-    translate: String,
-});
+    onMounted(() => {
+        guessInput.value.focus();
+    });
 
-const translation = ref('');
-const showTranslation = ref(false);
+    const props = defineProps({
+        original: String,
+        translate: String,
+    });
 
-const next = () => {
-    translation.value = '';
-    router.reload({ only: Practice });
-}
+    const guess = ref('');
+    const lastGuess = ref('');
+    const guessInput = ref(null);
+    const showTranslation = ref(false);
 
-const check = () => {
-    const correct = matches(translation.value, props.translate);
+    const next = () => {
+        guess.value = '';
+        showTranslation.value = false;
+        lastGuess.value = `${props.original} (${props.translate})`;
 
-    showTranslation.value = !correct;
+        router.reload({ only: Practice });
 
-    correct && next();
-};
+        guessInput.value.focus();
+    }
 
-const clean = (word) => {
-    return word.toLowerCase().replace(/\(.+?\)$/, '').replace(/\W/, '').trim();
-}
+    const check = () => {
+        const correct = matches(guess.value, props.translate);
 
-const matches = (input, expected) => {
-    const accepted = typeof expected === 'string'
-        ? expected.split(',')
-        : expected;
+        showTranslation.value = ! correct;
 
-    return accepted.map(x => clean(x)).includes(clean(input));
-}
+        correct && next();
+    };
+
+    const clean = (word) => {
+        return word.toLowerCase().replace(/\(.+?\)$/, '').replace(/\W/, '').trim();
+    }
+
+    const matches = (input, expected) => {
+        const accepted = typeof expected === 'string'
+            ? expected.split(',')
+            : expected;
+
+        return accepted.map(x => clean(x)).includes(clean(input));
+    }
 </script>
 
 <template>
-    <section class="flex flex-col center-items">
-        <div>Can you translate the following?</div>
-        <div class="my-5">{{ original }} <span v-if="showTranslation">({{ translate }})</span></div>
+    <section class="flex flex-col center-items mt-5">
+        <div class="m-4 py-5 px-8 text-xl mx-auto font-bold text-center border-2 rounded-2xl bg-black text-white border-blue-800">
+            {{ original }}
+            <span v-if="showTranslation">({{ translate }})</span>
+        </div>
 
         <input
+            ref="guessInput"
             type="text"
             @keyup.enter="check"
-            v-model="translation"
-            placeholder="Enter your translation"
-            class="appearance-none block bg-gray-100 text-gray-700 border border-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" />
+            v-model="guess"
+            placeholder="Give it a try!"
+            class="my-3 mx-auto w-1/2 text-center rounded-lg py-3 px-4 border-gray-500 placeholder-gray-300" />
 
-            <div class="flex justify-between">
-            <PrimaryButton @click="check" class="mt-3">Confirm</PrimaryButton>
-            <PrimaryButton @click="next" class="mt-3">Skip</PrimaryButton>
+        <div class="flex flex-row m-auto justify-around gap-6">
+            <PrimaryButton @click="check">Submit it!</PrimaryButton>
+            <PrimaryButton @click="next" class="bg-blue-400">Skip It</PrimaryButton>
+        </div>
+
+        <div v-if="lastGuess" class="p-6 text-sm mx-auto text-center text-gray-400">
+            <div>Previous word:</div>
+            <div class="text-gray-800">{{ lastGuess }}</div>
         </div>
     </section>
 </template>

@@ -21,17 +21,4 @@ import TheHighlights from '@/Layouts/TheHighlights.vue';
 
     <TheFooter class="mt-6" />
   </div>
-  <!-- <div class="wrapper">
-    <TheHeader />
-
-    <TheSidebar />
-
-    <div class="content mx-6">
-      <slot />
-    </div>
-
-    <TheHighlights />
-
-    <TheFooter />
-  </div> -->
 </template>
