@@ -16,5 +16,13 @@ class Model extends EloquentModel implements JsonResourceableContract
     use LazyRelations;
     use Validator;
 
-    protected $guarded = []; // TODO : define proper guarding in models
+    protected $guarded = [];
+
+    public static function rand(...$filters): ?static
+    {
+        return static::query()
+            ->when($filters, fn ($q, $filters) => $q->where(...$filters))
+            ->inRandomOrder()
+            ->first();
+    }
 }
