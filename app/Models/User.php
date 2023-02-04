@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Validators\Validator;
 use Faliure\Resourceable\Contracts\Resourceable;
 use Faliure\Resourceable\Traits\HasResources;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -49,8 +50,8 @@ class User extends Authenticatable implements Resourceable
         'email_verified_at' => 'datetime',
     ];
 
-    public function setPasswordAttribute(string $password)
+    public function password(): Attribute
     {
-        $this->attributes['password'] = Hash::make($password);
+        return Attribute::set(fn ($password) => Hash::make($password));
     }
 }

@@ -10,7 +10,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         if (User::whereName('Luke Skywalker')->doesntExist()) {
-            User::factory()->unverified()->create([
+            User::factory()->create([
                 'name'  => 'Luke Skywalker',
                 'email' => 'luke@jedi.com',
             ]);
