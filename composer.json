@@ -6,7 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
-        "faliure/laravel-resourceable": "^1.0",
+        "faliure/laravel-resourceable": "^1.0.0",
         "guzzlehttp/guzzle": "^7.2",
         "inertiajs/inertia-laravel": "^0.6.8",
         "jamesgordo/php-csv-parser": "^1.0",
