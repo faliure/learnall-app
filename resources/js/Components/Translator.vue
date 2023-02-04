@@ -1,8 +1,9 @@
 <script setup>
     import { ref, onMounted } from 'vue';
-    import { router } from '@inertiajs/vue3'
+    import { router } from '@inertiajs/vue3';
     import PrimaryButton from '@/Components/PrimaryButton.vue';
     import Practice from './Icons/Practice.vue';
+    import { getCurrentPage } from '@/Shared/pages';
 
     onMounted(() => {
         guessInput.value.focus();
@@ -17,6 +18,7 @@
     const lastGuess = ref('');
     const guessInput = ref(null);
     const showTranslation = ref(false);
+    const color = getCurrentPage().color;
 
     const next = () => {
         guess.value = '';
@@ -53,7 +55,8 @@
     <section class="flex flex-col center-items mt-5 text-center">
         <div class="m-4 w-4/5 mx-auto font-bold h-16">
             <div
-                class="py-2 rounded-2xl text-xl bg-blue-50 cursor-pointer"
+                class="py-2 rounded-2xl text-xl cursor-pointer"
+                :class="`text-${color}-900`"
                 @click="showTranslation = true"
                 title="Click to show translation"
             >{{ original }}</div>
@@ -66,11 +69,21 @@
             @keyup.enter="check"
             v-model="guess"
             placeholder="Give it a try!"
-            class="my-6 mx-auto w-4/5 text-center rounded-lg py-3 px-4 border-none shadow-inner shadow-gray-200 bg-gray-100 placeholder-gray-400" />
+            class="my-6 mx-auto w-4/5 text-center rounded-lg py-3 px-4 border-none shadow-inner shadow-gray-200 placeholder-gray-400"
+            :class="`bg-${color}-100 focus:ring-${color}-300`"
+        />
 
         <div class="flex flex-row m-auto justify-around gap-6 text-sm mt-6">
-            <PrimaryButton @click="check">Submit</PrimaryButton>
-            <PrimaryButton @click="next">
+            <PrimaryButton @click="check" :color="color">
+                Submit
+            </PrimaryButton>
+
+            <PrimaryButton
+                @click="next"
+                class="bg-transparent border"
+                :class="`text-${color}-500 border-${color}-100`"
+                :color="color"
+            >
                 Skip <span class="text-lg align-middle ml-1">😞</span>
             </PrimaryButton>
         </div>

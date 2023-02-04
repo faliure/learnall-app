@@ -1,15 +1,24 @@
 <script setup>
-  defineProps({ link: Object });
+  defineProps({
+    page: Object,
+  });
 </script>
 
 <template>
   <Link
-    :href="link.target"
-    class="rounded-lg flex items-center text-lg hover:bg-blue-100 uppercase"
-    :class="{'rborder border-gray font-extrabold bg-blue-300 hover:bg-blue-300': $page.component === link.component}"
+    :href="page.target"
+    class="rounded-lg flex items-center text-lg uppercase"
+    :class="[
+      `hover:bg-${page.color}-100`,
+      $page.component === page.component ? `rborder border-gray font-extrabold bg-${page.color}-300 hover:bg-${page.color}-300` : ''
+    ]"
   >
-    <component :is="link.icon" class="mr-5 rounded-full h-12 w-12 bg-blue-400 fill-white p-2 font-extrabold" />
+    <component
+      :is="page.icon"
+      class="mr-5 rounded-full h-12 w-12 fill-white p-2 font-extrabold"
+      :class="`bg-${page.color}-400`"
+    />
 
-    <span class="font-bold">{{ link.label }}</span>
+    <span :class="`text-${page.color}-900 font-bold`">{{ page.label }}</span>
   </Link>
 </template>

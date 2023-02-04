@@ -1,5 +1,9 @@
 <script setup>
+  import { onMounted } from 'vue';
   import LearnAllIcon from '@/Components/Icons/LearnAll.vue';
+  import { getCurrentPageRef } from '@/Shared/pages';
+
+  let currentPage = getCurrentPageRef();
 </script>
 
 <template>
@@ -7,7 +11,7 @@
     class="z-10 h-40 border-b-2 border-b-blue-100"
   >
     <section class="flex justify-between w-full p-6">
-      <LearnAllIcon class="flex-row h-28 fill-gray-800" />
+      <LearnAllIcon :class="`flex-row h-28 fill-${currentPage.color}-900`" />
 
       <nav class="flex items-center text-right">
         <div v-if="$page.props.user" class="p-3 pt-1 text-right flex-auto">

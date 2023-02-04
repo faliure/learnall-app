@@ -1,8 +1,12 @@
 <script setup>
+  import { usePage } from '@inertiajs/vue3';
   import TheHeader from '@/Layouts/TheHeader.vue';
   import TheFooter from '@/Layouts/TheFooter.vue';
   import TheSidebar from '@/Layouts/TheSidebar.vue';
   import TheHighlights from '@/Layouts/TheHighlights.vue';
+  import { setCurrentPage } from '@/Shared/pages';
+
+  setCurrentPage();
 </script>
 
 <template>
