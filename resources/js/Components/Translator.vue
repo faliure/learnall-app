@@ -51,7 +51,10 @@
 
 <template>
     <section class="flex flex-col center-items mt-5">
-        <div class="m-4 py-5 px-8 text-xl mx-auto font-bold text-center border-2 rounded-2xl bg-black text-white border-blue-800">
+        <div
+            class="m-4 py-2 w-1/2 mx-auto text-xl font-bold text-center rounded-2xl bg-blue-600 text-white"
+            @click="showTranslation = true"
+        >
             {{ original }}
             <span v-if="showTranslation">({{ translate }})</span>
         </div>

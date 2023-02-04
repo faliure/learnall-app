@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\MeController;
+use App\Models\Language;
 use App\Models\Lesson;
 use App\Models\Unit;
 use App\Models\Word;
@@ -17,9 +18,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/{learn?}', fn () => inertia('Learn', [
+Route::get('/{home?}', fn () => inertia('Home', [
+    'lanuages' => Language::resources(),
+]))->name('home')->whereIn('home', ['', 'home']);
+
+Route::get('/learn', fn () => inertia('Learn', [
     'units' => Unit::resources(),
-]))->name('learn')->whereIn('learn', ['', 'learn']);
+]))->name('learn');
 
 Route::get('/practice', fn () => inertia('Practice', [
     'word' => Word::rand(['language_id' => 5])?->resource(),
@@ -30,9 +35,6 @@ Route::get('/leaderboard', fn () => inertia('Leaderboard'))
 
 Route::get('/explore', fn () => inertia('Explore'))
     ->name('explore');
-
-Route::get('/stats', fn () => inertia('Stats'))
-    ->name('stats');
 
 Route::get('/units/{unit:slug}', fn (Unit $unit) => inertia('Unit', [
     'unit' => $unit->load('lessons')->resource(),
