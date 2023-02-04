@@ -17,6 +17,6 @@
 
 <template>
   <nav class="tracking-wider overflow-y-auto">
-    <SidebarLink v-for="link in links" :link="link" class="p-3 mb-2" />
+    <SidebarLink v-for="link in links" :link="link" class="p-2 m-1" />
   </nav>
 </template>

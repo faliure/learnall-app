@@ -1,8 +1,8 @@
 <script setup>
-import TheHeader from '@/Layouts/TheHeader.vue';
-import TheFooter from '@/Layouts/TheFooter.vue';
-import TheSidebar from '@/Layouts/TheSidebar.vue';
-import TheHighlights from '@/Layouts/TheHighlights.vue';
+  import TheHeader from '@/Layouts/TheHeader.vue';
+  import TheFooter from '@/Layouts/TheFooter.vue';
+  import TheSidebar from '@/Layouts/TheSidebar.vue';
+  import TheHighlights from '@/Layouts/TheHighlights.vue';
 </script>
 
 <template>

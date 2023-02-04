@@ -50,13 +50,14 @@
 </script>
 
 <template>
-    <section class="flex flex-col center-items mt-5">
-        <div
-            class="m-4 py-2 w-1/2 mx-auto text-xl font-bold text-center rounded-2xl bg-blue-600 text-white"
-            @click="showTranslation = true"
-        >
-            {{ original }}
-            <span v-if="showTranslation">({{ translate }})</span>
+    <section class="flex flex-col center-items mt-5 text-center">
+        <div class="m-4 w-4/5 mx-auto font-bold h-16">
+            <div
+                class="py-2 rounded-2xl text-xl bg-blue-50 cursor-pointer"
+                @click="showTranslation = true"
+                title="Click to show translation"
+            >{{ original }}</div>
+            <div class="mt-1 w-4/5 mx-auto text-xs" v-if="showTranslation">{{ translate }}</div>
         </div>
 
         <input
@@ -65,11 +66,13 @@
             @keyup.enter="check"
             v-model="guess"
             placeholder="Give it a try!"
-            class="my-3 mx-auto w-1/2 text-center rounded-lg py-3 px-4 border-gray-500 placeholder-gray-300" />
+            class="my-6 mx-auto w-4/5 text-center rounded-lg py-3 px-4 border-none shadow-inner shadow-gray-200 bg-gray-100 placeholder-gray-400" />
 
-        <div class="flex flex-row m-auto justify-around gap-6">
-            <PrimaryButton @click="check">Submit it!</PrimaryButton>
-            <PrimaryButton @click="next" class="bg-blue-400">Skip It</PrimaryButton>
+        <div class="flex flex-row m-auto justify-around gap-6 text-sm mt-6">
+            <PrimaryButton @click="check">Submit</PrimaryButton>
+            <PrimaryButton @click="next">
+                Skip <span class="text-lg align-middle ml-1">😞</span>
+            </PrimaryButton>
         </div>
 
         <div v-if="lastGuess" class="p-6 text-sm mx-auto text-center text-gray-400">

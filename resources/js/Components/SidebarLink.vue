@@ -5,10 +5,10 @@
 <template>
   <Link
     :href="link.target"
-    class="rounded-xl flex items-center text-lg hover:bg-blue-100 uppercase"
-    :class="{'rborder border-gray font-extrabold bg-blue-300 hover:bg-blue-100': $page.component === link.component}"
+    class="rounded-lg flex items-center text-lg hover:bg-blue-100 uppercase"
+    :class="{'rborder border-gray font-extrabold bg-blue-300 hover:bg-blue-300': $page.component === link.component}"
   >
-    <component :is="link.icon" class="mr-5" />
+    <component :is="link.icon" class="mr-5 rounded-full h-12 w-12 bg-blue-400 fill-white p-2 font-extrabold" />
 
     <span class="font-bold">{{ link.label }}</span>
   </Link>
