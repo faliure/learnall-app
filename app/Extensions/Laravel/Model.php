@@ -2,17 +2,17 @@
 
 namespace App\Extensions\Laravel;
 
-use App\Contracts\JsonResourceable as JsonResourceableContract;
-use App\Models\Traits\JsonResourceable;
 use App\Models\Traits\LazyRelations;
 use App\Models\Validators\Validator;
+use Faliure\Resourceable\Contracts\Resourceable;
+use Faliure\Resourceable\Traits\HasResources;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 
-class Model extends EloquentModel implements JsonResourceableContract
+class Model extends EloquentModel implements Resourceable
 {
     use HasFactory;
-    use JsonResourceable;
+    use HasResources;
     use LazyRelations;
     use Validator;
 
