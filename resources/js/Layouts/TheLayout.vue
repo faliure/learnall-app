@@ -1,5 +1,4 @@
 <script setup>
-  import { usePage } from '@inertiajs/vue3';
   import TheHeader from '@/Layouts/TheHeader.vue';
   import TheFooter from '@/Layouts/TheFooter.vue';
   import TheSidebar from '@/Layouts/TheSidebar.vue';
@@ -10,10 +9,10 @@
 </script>
 
 <template>
-  <div class="flex flex-col h-screen w-full xl:w-2/3 m-auto justify-center text-center">
+  <div class="flex flex-col h-screen w-full xl:w-2/3 m-auto justify-center text-center bg-white shadow-2xl shadow-stone-800">
     <TheHeader class="flex w-full min-w-fit justify-around mb-10" />
 
-    <section class="flex flex-row flex-1 w-full overflow-hidden">
+    <section class="flex flex-row flex-1 w-full overflow-hidden bg-white">
       <TheSidebar class="hidden sm:block w-1/4 min-w-fit p-3 overflow-y-auto" />
 
       <main class="w-full sm:w-3/4 lg:w-1/2 min-w-fit p-3 overflow-y-auto text-left">
@@ -23,6 +22,6 @@
       <TheHighlights class="hidden lg:block w-1/4 min-w-fit p-3" />
     </section>
 
-    <TheFooter class="mt-6" />
+    <TheFooter class="h-20 pt-6 bg-white" />
   </div>
 </template>

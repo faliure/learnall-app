@@ -10,10 +10,10 @@ const currentPage = ref(null);
 
 const pages = [
     { label: "Home", target: "/home", component: 'Home', icon: HomeIcon, color: 'blue' },
-    { label: "Learn", target: "/learn", component: 'Learn', icon: LearnIcon, color: 'green' },
-    { label: "Practice", target: "/practice", component: 'Practice', icon: PracticeIcon, color: 'red' },
+    { label: "Learn", target: "/learn", component: 'Learn', icon: LearnIcon, color: 'emerald' },
+    { label: "Practice", target: "/practice", component: 'Practice', icon: PracticeIcon, color: 'violet' },
     { label: "Explore", target: "/explore", component: 'Explore', icon: ExploreIcon, color: 'orange' },
-    { label: "Leaderboard", target: "/leaderboard", component: 'Leaderboard', icon: LeaderboardIcon, color: 'yellow' },
+    { label: "Leaderboard", target: "/leaderboard", component: 'Leaderboard', icon: LeaderboardIcon, color: 'stone' },
 ];
 
 export default pages;
@@ -21,7 +21,6 @@ export default pages;
 export const getCurrentPage = () => pages.find(p => p.component === usePage().component);
 
 export const setCurrentPage = (page) => {
-    console.log(getCurrentPage(), page || getCurrentPage());
     currentPage.value = page || getCurrentPage();
 }
 

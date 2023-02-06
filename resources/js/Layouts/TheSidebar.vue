@@ -16,7 +16,7 @@
     <SidebarLink
       v-for="page in pages"
       :page="page"
-      class="p-2 m-1"
+      class="-mr-2 m-1 p-1.5"
       @click="() => setCurrentPage(page)"
     />
   </nav>

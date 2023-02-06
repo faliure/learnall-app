@@ -1,14 +1,16 @@
 <script setup>
-  import { getCurrentPage } from '../Shared/pages';
+  import { getCurrentPageRef } from '../Shared/pages';
+  import TheSeparator from '@/Layouts/TheSeparator.vue';
 
-  const color = getCurrentPage().color;
+  let currentPage = getCurrentPageRef();
 </script>
 
 <template>
-  <footer
-    class="flex items-center justify-around h-12 border-t-2 text-gray-300 text-sm"
-    :class="`text-${color}-300 border-${color}-300`"
-  >
-    Footer (reserved)
+  <footer class="flex flex-col items-center justify-around uppercase text-gray-400 text-sm">
+    <TheSeparator class="w-full -mt-2" />
+
+    <section>
+      Footer (reserved)
+    </section>
   </footer>
 </template>
