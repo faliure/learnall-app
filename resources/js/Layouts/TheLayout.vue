@@ -10,7 +10,7 @@
 </script>
 
 <template>
-  <div class="flex flex-col h-screen max-w-[1024px] m-auto bg-white shadow-2xl shadow-stone-800">
+  <div class="flex flex-col h-screen max-w-[1024px] m-auto bg-white shadow-2xl shadow-stone-800 font-nova">
     <TheHeader />
 
     <TheSeparator />
