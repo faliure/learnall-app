@@ -5,7 +5,7 @@
 <template>
   <Link
     :href="`/units/${unit.slug}`"
-    class="block my-4 rounded-xl border border-gray text-center py-2 font-extrabold mb-5 hover:bg-green-200"
+    class="py-2 rounded-xl border border-gray text-center font-bold bg-emerald-900 bg-opacity-5 hover:bg-opacity-20"
   >
     {{ unit.name }}
   </Link>

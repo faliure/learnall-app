@@ -5,10 +5,5 @@
 </script>
 
 <template>
-  <section class="relative w-full">
-    <div
-      class="absolute h-1 left-4 right-4 blur-sm opacity-30"
-      :class="`bg-${currentPage.color}-500`"
-    ></div>
-  </section>
+  <div class="h-1 mx-4 blur-sm opacity-30" :class="`bg-${currentPage.color}-500`"></div>
 </template>

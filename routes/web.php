@@ -30,8 +30,8 @@ Route::get('/practice', fn () => inertia('Practice', [
     'word' => Word::rand(['language_id' => 5])?->resource(),
 ]))->name('practice');
 
-Route::get('/leaderboard', fn () => inertia('Leaderboard'))
-    ->name('leaderboard');
+Route::get('/compete', fn () => inertia('Compete'))
+    ->name('compete');
 
 Route::get('/explore', fn () => inertia('Explore'))
     ->name('explore');

@@ -5,5 +5,10 @@
 </script>
 
 <template>
-  <LessonPreview v-for="lesson in unit.lessons" :key="lesson.id" :lesson="lesson" />
+  <section class="flex flex-col gap-1">
+    <LessonPreview
+    v-for="lesson in unit.lessons"
+    :key="lesson.id"
+    :lesson="lesson" />
+  </section>
 </template>

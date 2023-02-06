@@ -60,7 +60,7 @@
                 @click="showTranslation = true"
                 title="Click to show translation"
             >{{ original }}</div>
-            <div class="mt-1 w-4/5 mx-auto text-xs" v-if="showTranslation">{{ translate }}</div>
+            <div class="w-4/5 mx-auto text-xs" v-if="showTranslation">{{ translate }}</div>
         </div>
 
         <input
@@ -69,8 +69,8 @@
             @keyup.enter="check"
             v-model="guess"
             placeholder="Give it a try!"
-            class="my-6 mx-auto w-4/5 text-center rounded-lg py-3 px-4 border-none shadow-inner shadow-gray-200 placeholder-gray-400"
-            :class="`bg-${color}-100 focus:ring-${color}-300`"
+            class="my-4 mx-auto w-4/5 text-center rounded-lg py-2 border-none placeholder-gray-400"
+            :class="`bg-${color}-900 bg-opacity-5 focus:ring-${color}-200`"
         />
 
         <div class="flex flex-row m-auto justify-around gap-6 text-sm mt-6">

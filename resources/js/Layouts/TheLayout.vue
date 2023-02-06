@@ -1,27 +1,32 @@
 <script setup>
   import TheHeader from '@/Layouts/TheHeader.vue';
-  import TheFooter from '@/Layouts/TheFooter.vue';
   import TheSidebar from '@/Layouts/TheSidebar.vue';
   import TheHighlights from '@/Layouts/TheHighlights.vue';
+  import TheFooter from '@/Layouts/TheFooter.vue';
+  import TheSeparator from '@/Layouts/TheSeparator.vue';
   import { setCurrentPage } from '@/Shared/pages';
 
   setCurrentPage();
 </script>
 
 <template>
-  <div class="flex flex-col h-screen w-full xl:w-2/3 m-auto justify-center text-center bg-white shadow-2xl shadow-stone-800">
-    <TheHeader class="flex w-full min-w-fit justify-around mb-10" />
+  <div class="flex flex-col h-screen max-w-[1024px] m-auto bg-white shadow-2xl shadow-stone-800">
+    <TheHeader />
 
-    <section class="flex flex-row flex-1 w-full overflow-hidden bg-white">
-      <TheSidebar class="hidden sm:block w-1/4 min-w-fit p-3 overflow-y-auto -mr-2" />
+    <TheSeparator />
 
-      <main class="w-full sm:w-3/4 lg:w-1/2 min-w-fit p-3 overflow-y-auto text-left">
+    <section class="flex flex-1 overflow-hidden p-6 pt-10">
+      <TheSidebar class="hidden md:flex flex-col w-1/4 min-w-fit overflow-y-auto" />
+
+      <main class="w-full md:w-3/4 lg:w-1/2 px-3 overflow-y-auto">
         <slot />
       </main>
 
-      <TheHighlights class="hidden lg:block w-1/4 min-w-fit p-3" />
+      <TheHighlights class="hidden lg:block w-1/4 px-3" />
     </section>
 
-    <TheFooter class="h-20 pt-6 bg-white" />
+    <TheSeparator />
+
+    <TheFooter class="h-16" />
   </div>
 </template>
