@@ -9,6 +9,10 @@
   import ExploreIcon from '@/Components/Icons/Explore.vue';
   import TheHeader from '@/Layouts/TheHeader.vue';
   import pages, { setCurrentPage } from '@/Shared/pages';
+
+const props = defineProps({
+  topNav: Boolean,
+});
 </script>
 
 <template>
@@ -16,7 +20,8 @@
     <SidebarLink
       v-for="page in pages"
       :page="page"
-      class="-mr-2 m-1 p-1.5"
+      :topNav="topNav"
+      class="m-1 p-1.5"
       @click="() => setCurrentPage(page)"
     />
   </nav>

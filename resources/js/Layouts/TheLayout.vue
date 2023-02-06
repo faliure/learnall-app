@@ -13,7 +13,7 @@
     <TheHeader class="flex w-full min-w-fit justify-around mb-10" />
 
     <section class="flex flex-row flex-1 w-full overflow-hidden bg-white">
-      <TheSidebar class="hidden sm:block w-1/4 min-w-fit p-3 overflow-y-auto" />
+      <TheSidebar class="hidden sm:block w-1/4 min-w-fit p-3 overflow-y-auto -mr-2" />
 
       <main class="w-full sm:w-3/4 lg:w-1/2 min-w-fit p-3 overflow-y-auto text-left">
         <slot />
