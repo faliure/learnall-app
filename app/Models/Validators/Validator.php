@@ -59,14 +59,14 @@ trait Validator
     {
         foreach (self::$handledEvents as $event) {
             if (is_callable([$this->validator, $event])) {
-                static::$event(fn($model) => $this->validator->$event($model));
+                static::$event(fn ($model) => $this->validator->$event($model));
             }
         }
 
         $validationRules = $this->getValidationRules();
 
         if ($validationRules && ! is_callable([$this->validator, 'saving'])) {
-            static::saving(fn() => $this->validate($validationRules));
+            static::saving(fn () => $this->validate($validationRules));
         }
     }
 

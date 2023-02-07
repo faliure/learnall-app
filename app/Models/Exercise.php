@@ -20,7 +20,7 @@ class Exercise extends Model
     {
         return $this->belongsToMany(Lesson::class)
             ->using(ExerciseLesson::class)
-            ->withTimestamps();;
+            ->withTimestamps();
     }
 
     public function units(): Builder
