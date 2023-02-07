@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use App\Extensions\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -44,7 +44,7 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::guard('web')->login($user);
+        Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
     }

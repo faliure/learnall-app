@@ -4,7 +4,7 @@
 
 <template>
   <Link
-    :href="`/units/${unit.slug}`"
+    :href="`/units/${unit.id}`"
     class="py-2 rounded-xl border border-gray text-center font-bold bg-emerald-900 bg-opacity-5 hover:bg-opacity-20"
   >
     {{ unit.name }}

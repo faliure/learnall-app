@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Extensions\Controller;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
@@ -55,7 +55,7 @@ class MeController extends Controller
 
         $user = $request->user();
 
-        Auth::guard('web')->logout();
+        Auth::logout();
 
         $user->delete();
 

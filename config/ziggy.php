@@ -8,5 +8,5 @@
  */
 return [
     // 'only' => ['/', 'learn', 'practice', 'unit', 'lessons'],
-    'except' => ['ignition.*', 'sanctum.*', 'telescope*'],
+    'except' => ['ignition.*', 'telescope*'],
 ];
