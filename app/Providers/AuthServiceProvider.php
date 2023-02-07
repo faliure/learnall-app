@@ -2,9 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\User;
-use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Validation\Rules\Password;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -26,8 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        ResetPassword::createUrlUsing(function (User $user, string $token) {
-            return env('SPA_URL') . '/reset-password?token=' . $token . '&user=' . $user->id;
-        });
+        Password::defaults(fn () => $this->app->environment('production')
+            ? Password::min(8)->mixedCase()->numbers()->uncompromised()
+            : Password::min(8));
     }
 }

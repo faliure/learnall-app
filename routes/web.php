@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\MeController;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\SecondaryPagesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::controller(PagesController::class)->group(function () {
+    Route::get('/{home?}', 'home')->name('home')->whereIn('home', ['', 'home']);
+    Route::get('/learn', 'learn')->name('learn');
+    Route::get('/practice', 'practice')->name('practice');
+    Route::get('/compete', 'compete')->name('compete');
+    Route::get('/explore', 'explore')->name('explore');
+});
+
+Route::controller(SecondaryPagesController::class)->group(function () {
+    Route::get('/units/{unitId}', 'units')->name('units');
+    Route::get('/lessons/{lessonId}', 'lessons')->name('lessons');
+});
+
+Route::middleware('auth:web')->group(function () {
+    Route::get('/me', [ MeController::class, 'edit' ])->name('me.edit');
+    Route::patch('/me', [ MeController::class, 'update' ])->name('me.update');
+    Route::delete('/me', [ MeController::class, 'destroy' ])->name('me.destroy');
 });

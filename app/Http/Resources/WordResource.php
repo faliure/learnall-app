@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Extensions\Laravel\Resource;
 
-class WordResource extends JsonResource
+class WordResource extends Resource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +16,10 @@ class WordResource extends JsonResource
     {
         return [
             'id'          => $this->id,
-            'language_id' => $this->language_id,
-            'language'    => $this->language->longName,
             'word'        => $this->word,
             'meaning'     => $this->meaning,
+            'language_id' => $this->language_id,
+            'language'    => $this->language->longName,
         ];
     }
 }
