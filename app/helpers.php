@@ -12,7 +12,7 @@ use Illuminate\Support\Arr;
  */
 function currentUser(): ?User
 {
-    return auth()->user();
+    return session('user');
 }
 
 /**

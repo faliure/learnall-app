@@ -18,7 +18,7 @@ const pages = [
 
 export default pages;
 
-export const getCurrentPage = () => pages.find(p => p.component === usePage().component);
+export const getCurrentPage = () => pages.find(p => p.component === usePage().component) || pages[0];
 
 export const setCurrentPage = (page) => {
     currentPage.value = page || getCurrentPage();
