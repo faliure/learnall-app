@@ -2,5 +2,5 @@
 </script>
 
 <template>
-  <div>This is the {{ $page.component }} page</div>
+  <div class="flex pt-20 justify-center my-auto">Site under construction</div>
 </template>

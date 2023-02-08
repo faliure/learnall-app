@@ -12,7 +12,7 @@
   <Link
     :href="page.target"
     class="flex items-center gap-3 mr-8 p-2 min-w-fit text-lg tracking-wider uppercase font-bold rounded-full hover:bg-opacity-5"
-    :class="isCurrentPage() ? `opacity-100` : `hover:bg-${page.color}-900 opacity-60 hover:opacity-100`"
+    :class="isCurrentPage() ? `opacity-100` : `hover:bg-${page.color}-900 opacity-50 hover:opacity-80`"
   >
     <component
       :is="page.icon"

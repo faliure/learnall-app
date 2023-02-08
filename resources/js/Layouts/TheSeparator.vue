@@ -5,5 +5,8 @@
 </script>
 
 <template>
-  <div class="h-1 mx-4 blur-sm opacity-30" :class="`bg-${currentPage.color}-500`"></div>
+  <div
+    class="h-1 blur-sm bg-gradient-to-r opacity-50 from-transparent"
+    :class="`via-${currentPage.color}-500`
+  "></div>
 </template>

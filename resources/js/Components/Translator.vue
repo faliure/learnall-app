@@ -52,8 +52,8 @@
 </script>
 
 <template>
-    <section class="flex flex-col center-items mt-5 text-center">
-        <div class="m-4 w-4/5 mx-auto font-bold h-16">
+    <section class="flex flex-col center-items text-center">
+        <div class="h-16 w-4/5 mx-auto font-bold">
             <div
                 class="py-2 rounded-2xl text-xl cursor-pointer"
                 :class="`text-${color}-900`"

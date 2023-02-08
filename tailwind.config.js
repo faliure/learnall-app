@@ -11,7 +11,7 @@ module.exports = {
 
     safelist: [
         {
-            pattern: /(bg|text|ring|border(-[btlr])?|fill)-(gray|emerald|blue|orange|violet|stone)-(50|[1-9]00)/ ,
+            pattern: /(bg|text|ring|border(-[btlr])?|fill|via)-(gray|emerald|blue|orange|violet|stone)-(50|[1-9]00)/ ,
             variants: ['lg', 'hover', 'focus'],
         },
     ],
