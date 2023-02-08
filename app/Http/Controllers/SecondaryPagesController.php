@@ -10,14 +10,14 @@ class SecondaryPagesController extends Controller
     public function units(Api $api, int $unitId)
     {
         return inertia('Unit', [
-            'unit' => $api->get("units/$unitId"),
+            'unit' => $api->get("units/$unitId")->json(),
         ]);
     }
 
     public function lessons(Api $api, int $lessonId)
     {
         return inertia('Lesson', [
-            'lesson' => $api->get("lessons/$lessonId"),
+            'lesson' => $api->get("lessons/$lessonId")->json(),
         ]);
     }
 }
