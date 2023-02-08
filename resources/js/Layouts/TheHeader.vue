@@ -9,24 +9,28 @@
 
 <template>
   <header
-    class="flex flex-col p-6 pb-4"
+    class="flex flex-col px-6 py-4"
     :class="`border-${currentPage.color}-900`"
   >
     <section class="flex justify-between">
-      <div class="relative">
+      <div class="relative pl-4">
         <LearnAllIcon :class="`h-16 sm:h-28 fill-stone-900`" />
         <LearnAllIcon :class="`h-16 sm:h-28 bottom-0 absolute fill-${currentPage.color}-900 opacity-20 blur-lg`" />
       </div>
 
-      <nav class="flex items-center text-stone-800">
+      <nav class="flex justify-center items-center text-stone-800 w-1/4">
         <div v-if="$page.props.user" class="flex flex-col gap-4 text-right">
           <div class="text-sm text-gray-500">Welcome, {{ $page.props.user.name }}!</div>
           <Link href="/logout" method="POST" class="opacity-70 hover:opacity-100">Logout</Link>
         </div>
 
-        <div v-if="!$page.props.user" class="flex gap-6 font-bold">
-          <Link href="/login" class="opacity-70 hover:opacity-100">Login</Link>
-          <Link href="/register" class="opacity-70 hover:opacity-100">Register</Link>
+        <div v-if="!$page.props.user" class="flex gap-2">
+          <Link href="/login" class="px-6 py-1 opacity-50 hover:opacity-100 bg-stone-500 bg-opacity-10 hover:bg-opacity-20 rounded-lg">
+            Login
+          </Link>
+          <Link href="/register" class="px-6 py-1 opacity-50 hover:opacity-100 bg-stone-500 bg-opacity-10 hover:bg-opacity-20 rounded-lg">
+            Register
+          </Link>
         </div>
       </nav>
     </section>

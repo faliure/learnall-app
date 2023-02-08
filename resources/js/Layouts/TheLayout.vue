@@ -19,7 +19,7 @@
       <TheSidebar class="hidden md:flex flex-col w-1/4 min-w-fit overflow-y-auto" />
 
       <main class="h-full w-full md:w-3/4 lg:w-1/2 -mt-3 p-3 overflow-y-auto
-        bg-gradient-to-r from-stone-50 via-transparent to-stone-50 rounded-xl backdrop-opacity-50">
+        bg-gradient-to-b from-stone-50 rounded-xl backdrop-opacity-50">
         <slot />
       </main>
 
