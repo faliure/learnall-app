@@ -14,8 +14,8 @@ defineProps({
 <template>
     <button
         :type="type"
-        class="px-4 py-2 w-24 rounded-md uppercase focus:bg-gray-700 active:bg-gray-900"
-        :class="`text-${color}-100 bg-${color}-600 hover:bg-${color}-900`"
+        class="px-4 py-2 rounded-md uppercase focus:bg-gray-700 active:bg-gray-900"
+        :class="`text-${color}-100 bg-${color}-900 bg-opacity-80 hover:bg-opacity-100`"
     >
         <slot />
     </button>
