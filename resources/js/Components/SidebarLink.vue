@@ -11,12 +11,12 @@
 <template>
   <Link
     :href="page.target"
-    class="flex items-center gap-3 mr-8 p-2 min-w-fit text-lg tracking-wider uppercase font-bold rounded-full hover:bg-opacity-5"
+    class="flex items-center gap-3 md:mr-8 p-2 min-w-fit text-lg tracking-wider uppercase font-bold rounded-full hover:bg-opacity-5"
     :class="isCurrentPage() ? `opacity-100` : `hover:bg-${page.color}-900 opacity-50 hover:opacity-80`"
   >
     <component
       :is="page.icon"
-      class="h-9 w-9 p-1 rounded-full fill-gray-100"
+      class="max-h-9 max-w-9 p-1 rounded-full fill-gray-100"
       :class="`bg-${page.color}-900`"
     />
 
