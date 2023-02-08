@@ -9,8 +9,11 @@ class PagesController extends Controller
 {
     public function home(Api $api)
     {
+        $languageId = 5; // TODO : replace withe actual current language ID
+
         return inertia('Home', [
             'languages' => $api->get('languages')->json(),
+            'word' => $api->get("languages/$languageId/word")->json(),
         ]);
     }
 
@@ -23,11 +26,7 @@ class PagesController extends Controller
 
     public function practice(Api $api)
     {
-        $languageId = 5; // TODO : replace withe actual current language ID
-
-        return inertia('Practice', [
-            'word' => $api->get("languages/$languageId/word")->json(),
-        ]);
+        return inertia('Practice');
     }
 
     public function compete()

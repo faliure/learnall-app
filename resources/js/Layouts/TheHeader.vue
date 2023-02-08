@@ -9,13 +9,13 @@
 
 <template>
   <header
-    class="flex flex-col p-6"
+    class="flex flex-col p-6 pb-4"
     :class="`border-${currentPage.color}-900`"
   >
     <section class="flex justify-between">
       <div class="relative">
-        <LearnAllIcon :class="`h-16 sm:h-28 bottom-0 absolute fill-${currentPage.color}-900 opacity-60 blur-lg`" />
-        <LearnAllIcon :class="`h-16 sm:h-28 fill-stone-800`" />
+        <LearnAllIcon :class="`h-16 sm:h-28 fill-stone-900`" />
+        <LearnAllIcon :class="`h-16 sm:h-28 bottom-0 absolute fill-${currentPage.color}-900 opacity-20 blur-lg`" />
       </div>
 
       <nav class="flex items-center text-stone-800">
