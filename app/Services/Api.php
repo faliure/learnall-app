@@ -17,10 +17,10 @@ class Api
                 'base_uri' => trim(config('api.base_uri'), '/') . '/',
                 'timeout'  => 5,
                 'verify'   => false,
-            ])
-            ->withHeaders([
-                'Accept' => 'application/json',
+                'headers'  => [ 'Accept' => 'application/json' ]
             ]);
+
+            ($token = session('token')) && $this->request->withToken($token);
     }
 
     public function __call($name, $arguments)
