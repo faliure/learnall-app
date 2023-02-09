@@ -1,5 +1,5 @@
 <script setup>
-  import LessonPreview from '@/Components/LessonPreview.vue';
+  import LessonPreview from '@/Pages/LessonPreview.vue';
 
   defineProps({ unit: Object});
 </script>

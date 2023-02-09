@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Extensions\User;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Facades\Http;
@@ -20,7 +21,7 @@ class Api
             ->acceptJson()
             ->withoutVerifying()
             ->when(
-                session('token'),
+                User::restore()->token,
                 fn ($http, $token) => $http->withToken($token)
             );
     }
@@ -30,6 +31,7 @@ class Api
         try {
             return $this->request->$name(...$arguments);
         } catch (RequestException $e) {
+            dd($e->response);
             throw ValidationException::withMessages(
                 $e->response->json('errors')
                     ?? "We're as surprised as you are. No idea what just happened..."

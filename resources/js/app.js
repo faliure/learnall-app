@@ -3,7 +3,6 @@ import '../css/app.css';
 
 import { createApp, h } from 'vue';
 import { createInertiaApp, Link } from '@inertiajs/vue3';
-import pinia from '@/Store';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import TheLayout from '@/Layouts/TheLayout.vue';
@@ -25,7 +24,6 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         return createApp({ render: () => h(App, props) })
             .use(plugin)
-            .use(pinia)
             .use(ZiggyVue, Ziggy)
             .component('Link', Link)
             .mount(el);

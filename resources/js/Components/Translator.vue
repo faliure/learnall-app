@@ -52,7 +52,7 @@
 </script>
 
 <template>
-    <section class="flex flex-col center-items text-center">
+    <section class="flex flex-col center-items text-center h-full py-6">
         <div class="h-16 w-4/5 mx-auto font-bold">
             <div
                 class="py-2 rounded-2xl text-xl cursor-pointer"
@@ -89,7 +89,7 @@
         </div>
 
         <div v-if="lastGuess" class="p-6 text-sm mx-auto text-center text-gray-400">
-            <div>Previous Translation:</div>
+            <div>Previous Translation</div>
             <div class="text-gray-800">{{ lastGuess }}</div>
         </div>
     </section>
