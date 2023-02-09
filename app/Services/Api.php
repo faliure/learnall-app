@@ -21,7 +21,7 @@ class Api
             ->acceptJson()
             ->withoutVerifying()
             ->when(
-                User::restore()->token,
+                User::restore()?->token,
                 fn ($http, $token) => $http->withToken($token)
             );
     }
