@@ -1,5 +1,5 @@
 <script setup>
-  import UnitPreview from '@/Components/UnitPreview.vue';
+  import UnitPreview from '@/Pages/UnitPreview.vue';
 
   defineProps({ units: Array });
 </script>

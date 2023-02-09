@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver'   => 'session',
-            'provider' => 'users',
+            'provider' => 'proxy',
         ],
     ],
 
@@ -60,9 +60,9 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model'  => App\Models\User::class,
+        'proxy' => [
+            'driver' => 'proxy',
+            'model'  => \App\Extensions\User::class,
         ],
     ],
 
@@ -80,15 +80,6 @@ return [
     | they have less time to be guessed. You may change this as needed.
     |
     */
-
-    'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table'    => 'password_resets',
-            'expire'   => 60,
-            'throttle' => 60,
-        ],
-    ],
 
     /*
     |--------------------------------------------------------------------------

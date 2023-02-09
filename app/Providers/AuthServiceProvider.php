@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Extensions\UserProvider;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 
 class AuthServiceProvider extends ServiceProvider
@@ -24,6 +26,8 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+
+        Auth::provider('proxy', fn () => app(UserProvider::class));
 
         Password::defaults(fn () => $this->app->environment('production')
             ? Password::min(8)->mixedCase()->numbers()->uncompromised()

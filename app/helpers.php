@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Arr;
 
 /******************************************************************************
@@ -10,15 +10,15 @@ use Illuminate\Support\Arr;
 /**
  * Get the currently authenticated user, with proper type hint.
  */
-function currentUser(): ?User
+function currentUser(): ?Authenticatable
 {
-    return session('user');
+    return auth()->user();
 }
 
 /**
  * Syntactic sugar for currentUser().
  */
-function me(): ?User
+function me(): ?Authenticatable
 {
     return currentUser();
 }
