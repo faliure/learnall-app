@@ -26,7 +26,6 @@ class PagesController extends Controller
 
     public function practice(Api $api)
     {
-        dd(me());
         return inertia('Practice');
     }
 
