@@ -3,7 +3,9 @@
 namespace App\Services;
 
 use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Validation\ValidationException;
 
 class Api
 {
@@ -25,6 +27,13 @@ class Api
 
     public function __call($name, $arguments)
     {
-        return $this->request->$name(...$arguments);
+        try {
+            return $this->request->$name(...$arguments);
+        } catch (RequestException $e) {
+            throw ValidationException::withMessages(
+                $e->response->json('errors')
+                    ?? "We're as surprised as you are. No idea what just happened..."
+            );
+        }
     }
 }
