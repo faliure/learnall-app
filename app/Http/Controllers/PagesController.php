@@ -13,7 +13,7 @@ class PagesController extends Controller
 
         return inertia('Home', [
             'languages' => $api->get('languages')->json(),
-            'word' => $api->get("languages/$languageId/word")->json(),
+            'learnable' => $api->get("languages/$languageId/learnable")->json(),
         ]);
     }
 

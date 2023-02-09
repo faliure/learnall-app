@@ -38,8 +38,8 @@
         correct && next();
     };
 
-    const clean = (word) => {
-        return word.toLowerCase().replace(/\(.+?\)$/, '').replace(/\W/, '').trim();
+    const clean = (learnable) => {
+        return learnable.toLowerCase().replace(/\(.+?\)$/, '').replace(/\W/, '').trim();
     }
 
     const matches = (input, expected) => {
@@ -89,7 +89,7 @@
         </div>
 
         <div v-if="lastGuess" class="p-6 text-sm mx-auto text-center text-gray-400">
-            <div>Previous word:</div>
+            <div>Previous Translation:</div>
             <div class="text-gray-800">{{ lastGuess }}</div>
         </div>
     </section>
