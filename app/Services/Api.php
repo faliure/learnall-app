@@ -11,16 +11,16 @@ class Api
 
     public function __construct()
     {
-        $this->request = Http::connectTimeout(3)
+        $this->request = Http::baseUrl(config('api.base_uri'))
             ->retry(3, 100, throw: true)
-            ->withOptions([
-                'base_uri' => trim(config('api.base_uri'), '/') . '/',
-                'timeout'  => 5,
-                'verify'   => false,
-                'headers'  => [ 'Accept' => 'application/json' ]
-            ]);
-
-            ($token = session('token')) && $this->request->withToken($token);
+            ->connectTimeout(3)
+            ->timeout(5)
+            ->acceptJson()
+            ->withoutVerifying()
+            ->when(
+                session('token'),
+                fn ($http, $token) => $http->withToken($token)
+            );
     }
 
     public function __call($name, $arguments)
