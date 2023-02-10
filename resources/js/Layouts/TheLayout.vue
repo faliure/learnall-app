@@ -21,7 +21,7 @@
         class="flex md:flex-col justify-around md:justify-start md:w-1/4 min-w-fit overflow-y-auto pb-2"
       />
 
-      <main class="h-full w-full md:w-3/4 lg:w-1/2 md:-mt-3 p-3 overflow-y-auto
+      <main class="flex-1 h-full md:-mt-3 p-3 overflow-y-auto
         bg-gradient-to-b from-stone-50 rounded-xl backdrop-opacity-50">
         <slot />
       </main>
