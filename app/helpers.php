@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
 
 /******************************************************************************
@@ -10,7 +11,7 @@ use Illuminate\Support\Arr;
 /**
  * Get the currently authenticated user, with proper type hint.
  */
-function currentUser(): ?Authenticatable
+function currentUser(): (Authenticatable & Arrayable) | null
 {
     return auth()->user();
 }
@@ -18,7 +19,7 @@ function currentUser(): ?Authenticatable
 /**
  * Syntactic sugar for currentUser().
  */
-function me(): ?Authenticatable
+function me(): (Authenticatable & Arrayable) | null
 {
     return currentUser();
 }
@@ -26,7 +27,7 @@ function me(): ?Authenticatable
 /**
  * Get a property of the currently authenticated user.
  */
-function my(string $property)
+function my(string $property): mixed
 {
     return currentUser()->$property ?? null;
 }
@@ -34,7 +35,7 @@ function my(string $property)
 /**
  * TODO : remove and replace callers once Roles are implemented.
  */
-function isAdmin()
+function isAdmin(): bool
 {
     return my('id') === 1;
 }
@@ -52,14 +53,12 @@ function identity(): Closure
  *****************************************************************************/
 
 /**
- * Convert a list into a human-readable concatenated list.
+ * Convert a list into a natural-language list (e.g. '1, 2 and 3').
  *
  * @param array $items         The items to concatenate
  * @param string $conjunction  The conjunction word to use (defaults to "and")
- *
- * @return string  The concatenated list, eg. [1, 2, 3] => "1, 2 and 3"
  */
-function concatenate(array $items, string $conjunction = ' and ')
+function concatenate(array $items, string $conjunction = ' and '): string
 {
     return Arr::join($items, ', ', $conjunction);
 }
@@ -67,7 +66,7 @@ function concatenate(array $items, string $conjunction = ' and ')
 /**
  * Concatenate items into a string list, as a conjunction (AND).
  */
-function conjunction(array $items)
+function conjunction(array $items): string
 {
     return concatenate($items, ' and ');
 }
@@ -75,7 +74,7 @@ function conjunction(array $items)
 /**
  * Concatenate items into a string list, as a disjunction (OR).
  */
-function disjunction(array $items)
+function disjunction(array $items): string
 {
     return concatenate($items, ' or ');
 }

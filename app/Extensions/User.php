@@ -3,8 +3,9 @@
 namespace App\Extensions;
 
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Contracts\Support\Arrayable;
 
-class User implements Authenticatable
+class User implements Authenticatable, Arrayable
 {
     protected array $attributes = [];
 
@@ -107,5 +108,14 @@ class User implements Authenticatable
     public function __get($name)
     {
         return $this->attributes[$name] ?? null;
+    }
+
+    public function toArray()
+    {
+        return [
+            'id'    => $this->attributes['id'] ?? null,
+            'name'  => $this->attributes['name'] ?? null,
+            'email' => $this->attributes['email'] ?? null,
+        ];
     }
 }
