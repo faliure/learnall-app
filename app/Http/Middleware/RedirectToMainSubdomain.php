@@ -48,7 +48,8 @@ class RedirectToMainSubdomain
      */
     protected function hostParts(): array
     {
-        [ 'host' => $host, 'path' => $path ] = parse_url($this->url);
+        $host = parse_url($this->url, PHP_URL_HOST);
+        $path = parse_url($this->url, PHP_URL_PATH) ?? '';
 
         preg_match('#^(?:(.+)\.)?(.+?\..+)$#', $host, $matches);
 
