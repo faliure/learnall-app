@@ -7,7 +7,6 @@
     import { Link, useForm, router } from '@inertiajs/vue3';
 
     defineProps({
-        canResetPassword: Boolean,
         status: String,
     });
 
@@ -25,12 +24,12 @@
 </script>
 
 <template>
-    <section class="w-full flex flex-col items-center">
+    <section class="flex flex-col items-center">
         <div v-if="status" class="mb-0 font-medium text-sm text-green-600">
             {{ status }}
         </div>
 
-        <form @submit.prevent="submit" class="w-3/4">
+        <form @submit.prevent="submit" class="w-1/2 min-w-fit">
             <div>
                 <InputLabel for="email" value="Email" />
 
@@ -56,7 +55,7 @@
                 </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
+            <div class="flex items-center flex-wrap gap-4 justify-end mt-4">
                 <Link
                     :href="route('register')"
                     class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -64,7 +63,7 @@
                     Don't have an account yet?
                 </Link>
 
-                <PrimaryButton type="submit" class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <PrimaryButton type="submit" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Log in
                 </PrimaryButton>
             </div>

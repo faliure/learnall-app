@@ -21,10 +21,10 @@
 </script>
 
 <template>
-    <section>
+    <section class="flex justify-around w-full">
         <Head title="Register" />
 
-        <form @submit.prevent="submit">
+        <form @submit.prevent="submit" class="w-1/2 min-w-fit">
             <div>
                 <InputLabel for="name" value="Name" />
 
