@@ -5,7 +5,7 @@
 /public/storage
 /storage/*.key
 /vendor
-.vapor
+/.vapor
 .env
 .env.backup
 .env.staging
