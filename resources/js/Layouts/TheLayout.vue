@@ -15,15 +15,21 @@
 
     <TheSeparator class="hidden md:block" />
 
-    <section class="flex flex-col md:flex-row flex-1 overflow-hidden md:p-6 md:pt-10">
-      <TheSidebar class="flex md:flex-col justify-around md:justify-start md:w-1/4 min-w-fit overflow-y-auto pb-2" />
+    <section class="flex flex-col justify-center md:flex-row flex-1 overflow-hidden md:p-6 md:pt-10">
+      <TheSidebar
+        v-if="$page.props.user"
+        class="flex md:flex-col justify-around md:justify-start md:w-1/4 min-w-fit overflow-y-auto pb-2"
+      />
 
       <main class="h-full w-full md:w-3/4 lg:w-1/2 md:-mt-3 p-3 overflow-y-auto
         bg-gradient-to-b from-stone-50 rounded-xl backdrop-opacity-50">
         <slot />
       </main>
 
-      <TheHighlights class="hidden lg:block w-1/4 px-3" />
+      <TheHighlights
+        v-if="$page.props.user"
+        class="hidden lg:block w-1/4 px-3"
+      />
     </section>
 
     <TheSeparator />

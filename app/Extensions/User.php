@@ -16,7 +16,7 @@ class User implements Authenticatable, Arrayable
 
     public function destroy()
     {
-        session()->delete('proxy.user');
+        session()->forget('proxy.user');
     }
 
     public static function make(...$args)
