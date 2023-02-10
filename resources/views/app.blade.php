@@ -18,10 +18,7 @@
         @inertia
     </body>
 
-<style>
-    /* body {
-        # from-purple-700 via-gray-100 to-blue-600
-        background: linear-gradient(to top, #ffd700 50%, #0057b7 50%);
-    } */
-</style>
+    <script lang="ts">
+        window.environment = '{{ app()->environment() }}';
+    </script>
 </html>
