@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InternalPagesController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\SecondaryPagesController;
 use Illuminate\Support\Facades\Route;
@@ -26,4 +27,10 @@ Route::controller(PagesController::class)->group(function () {
 Route::controller(SecondaryPagesController::class)->group(function () {
     Route::get('/units/{unitId}', 'units')->name('units');
     Route::get('/lessons/{lessonId}', 'lessons')->name('lessons');
+});
+
+Route::controller(InternalPagesController::class)->group(function () {
+    Route::get('/builder', 'builder')->name('builder');
+    Route::get('/labs', 'labs')->name('labs');
+    Route::get('/palette', 'palette')->name('palette');
 });

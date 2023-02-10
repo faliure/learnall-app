@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Extensions\Controller;
 use App\Services\Api;
+use Inertia\Response;
 
 class PagesController extends Controller
 {
-    public function home(Api $api)
+    public function home(Api $api): Response
     {
-        $languageId = 5; // TODO : replace withe actual current language ID
+        $languageId = 5; // TODO : replace wit the actual current language's ID
 
         return inertia('Home', [
             'languages' => $api->get('languages')->json(),
@@ -17,24 +18,22 @@ class PagesController extends Controller
         ]);
     }
 
-    public function learn(Api $api)
+    public function learn(): Response
     {
-        return inertia('Learn', [
-            'units' => $api->get('units')->json(),
-        ]);
+        return inertia('Learn');
     }
 
-    public function practice(Api $api)
+    public function practice(): Response
     {
         return inertia('Practice');
     }
 
-    public function compete()
+    public function compete(): Response
     {
         return inertia('Compete');
     }
 
-    public function explore()
+    public function explore(): Response
     {
         return inertia('Explore');
     }

@@ -32,6 +32,7 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             'user'     => me(),
             'location' => $request->url(),
+            'env'      => app()->environment(),
         ]);
     }
 }
