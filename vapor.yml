@@ -2,6 +2,8 @@ id: 42215
 name: LearnAllApp
 environments:
     production:
+        domain:
+            - '*.learnall.online'
         memory: 1024
         cli-memory: 512
         runtime: 'php-8.2:al2'
@@ -11,11 +13,12 @@ environments:
             - 'php artisan event:cache'
             - 'npm ci && npm run build && rm -rf node_modules'
     staging:
+        domain: 'playground.learnall.online'
         memory: 1024
         cli-memory: 512
         runtime: 'php-8.2:al2'
         warm: 5
         build:
-            - 'composer install --no-dev --optimize-autoloader'
+            - 'composer install --optimize-autoloader'
             - 'php artisan event:cache'
             - 'npm ci && npm run build && rm -rf node_modules'
