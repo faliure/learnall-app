@@ -9,7 +9,6 @@
         "guzzlehttp/guzzle": "^7.5",
         "inertiajs/inertia-laravel": "^0.6.8",
         "laravel/framework": "^10.0",
-        "laravel/telescope": "^4.12",
         "laravel/tinker": "^2.7",
         "laravel/vapor-core": "^2.28",
         "laravel/vapor-ui": "^1.7",
