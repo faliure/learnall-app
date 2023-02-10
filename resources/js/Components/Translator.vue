@@ -38,16 +38,17 @@
         correct && next();
     };
 
-    const clean = (learnable) => {
-        return learnable.toLowerCase().replace(/\(.+?\)$/, '').replace(/\W/, '').trim();
-    }
+    const clean = x => x.toLowerCase()
+                        .replace(/\(.+?\)$/, '')
+                        .replace(/[^\w,]/, '')
+                        .trim();
 
     const matches = (input, expected) => {
-        const accepted = typeof expected === 'string'
-            ? expected.split(',')
-            : expected;
+        const accepted = (typeof expected === 'string' ? [ expected ] : expected)
+                        .map(x => clean(x).split(','))
+                        .flat();
 
-        return accepted.map(x => clean(x)).includes(clean(input));
+        return accepted.includes(clean(input));
     }
 </script>
 
