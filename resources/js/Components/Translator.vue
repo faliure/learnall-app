@@ -39,8 +39,8 @@
     };
 
     const clean = x => x.toLowerCase()
-                        .replace(/\(.+?\)$/, '')
-                        .replace(/[^\w,]/, '')
+                        .replace(/\(.+?\)/g, '')
+                        .replace(/[^\w,]/g, '')
                         .trim();
 
     const matches = (input, expected) => {
