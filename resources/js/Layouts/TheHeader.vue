@@ -24,20 +24,6 @@
           <Link href="/logout" method="POST" class="opacity-70 hover:opacity-100">
               Logout</Link>
         </div>
-
-        <div v-if="!$page.props.user" class="flex flex-wrap gap-2">
-          <Link
-            href="/login"
-            class="px-6 py-1 opacity-60 hover:opacity-100 bg-stone-500 bg-opacity-10 hover:bg-opacity-20 rounded-lg"
-          >
-            Login
-          </Link>
-          <Link href="/register"
-            class="px-6 py-1 opacity-60 hover:opacity-100 bg-stone-500 bg-opacity-10 hover:bg-opacity-20 rounded-lg"
-          >
-            Register
-          </Link>
-        </div>
       </nav>
     </section>
   </header>
