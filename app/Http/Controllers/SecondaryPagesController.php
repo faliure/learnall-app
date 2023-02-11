@@ -20,6 +20,18 @@ class SecondaryPagesController extends Controller
         return inertia('Auth/Register');
     }
 
+    public function courses(Api $api): Response
+    {
+        $courses = $api->get('courses', [
+            'with'  => [ 'language', 'fromLanguage' ],
+            'count' => [ 'units' ],
+        ])->json();
+
+        return inertia('Secondary/SelectCourse', [
+            'courses' => $courses,
+        ]);
+    }
+
     public function units(Api $api, int $unitId): Response
     {
         return inertia('Unit', [

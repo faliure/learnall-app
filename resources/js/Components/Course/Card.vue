@@ -1,6 +1,6 @@
 <script setup>
   import { Link } from '@inertiajs/vue3';
-  import CourseFlag from '@/Components/CourseFlag.vue';
+  import CourseFlag from '@/Components/Course/Flag.vue';
 
   defineProps({
     course: Object,
