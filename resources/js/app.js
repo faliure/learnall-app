@@ -1,5 +1,6 @@
 import './bootstrap';
 import '../css/app.css';
+import '../css/freakflags.css';
 
 import { createApp, h } from 'vue';
 import { createInertiaApp, Link } from '@inertiajs/vue3';

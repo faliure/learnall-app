@@ -62,7 +62,7 @@ return [
     'providers' => [
         'proxy' => [
             'driver' => 'proxy',
-            'model'  => \App\Extensions\User::class,
+            'model'  => \App\Extensions\Auth\User::class,
         ],
     ],
 

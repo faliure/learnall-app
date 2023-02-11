@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Extensions;
+namespace App\Extensions\Auth;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Support\Arrayable;
@@ -14,9 +14,9 @@ class User implements Authenticatable, Arrayable
         $this->update($attributes);
     }
 
-    public function destroy()
+    public function destroy(): void
     {
-        session()->forget('proxy.user');
+        session()->forget('soon-to-be-gone-user');
     }
 
     public static function make($args)
@@ -26,9 +26,9 @@ class User implements Authenticatable, Arrayable
         return new static($args);
     }
 
-    public static function restore()
+    public static function restore(): ?User
     {
-        return session('proxy.user');
+        return User::make(session('soon-to-be-gone-user', []));
     }
 
     /**
@@ -38,7 +38,7 @@ class User implements Authenticatable, Arrayable
     {
         $this->attributes = $data + $this->attributes;
 
-        session()->put('proxy.user', $this);
+        session()->put('soon-to-be-gone-user', $this->attributes);
 
         return $this;
     }

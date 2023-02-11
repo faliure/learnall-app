@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Extensions\Auth\UserProvider;
 use App\Extensions\Controller;
-use App\Extensions\UserProvider;
 use App\Services\Api;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
