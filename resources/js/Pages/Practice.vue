@@ -1,3 +1,16 @@
+<script setup>
+  import Translator from '@/Components/Translator.vue';
+  import axios from 'axios';
+
+  defineProps({
+    learnable: Object,
+  });
+
+</script>
+
 <template>
-  <div class="flex pt-20 justify-center my-auto">Site under construction</div>
-</template>>
+  <Translator
+    :original="learnable.learnable"
+    :translate="learnable.translation.translation"
+  />
+</template>
