@@ -1,5 +1,5 @@
 <script setup>
-  import CourseCard from '@/Components/CourseCard.vue';
+  import CourseCard from '@/Components/Course/Card.vue';
 
   const props = defineProps({
     courses: Array,

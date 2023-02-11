@@ -8,6 +8,11 @@ use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
 {
+    public function __construct(
+        protected CourseRepository $courseRepository
+    ) {
+    }
+
     /**
      * Define the props that are shared by default.
      *
@@ -19,6 +24,7 @@ class HandleInertiaRequests extends Middleware
             'user'     => me(),
             'location' => $request->url(),
             'env'      => app()->environment(),
+            'course'   => $this->courseRepository->getActiveCourse(),
         ]);
     }
 }
