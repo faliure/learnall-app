@@ -15,7 +15,9 @@ class PagesController extends Controller
             'count' => [ 'units' ],
         ])->json();
 
-        return inertia('Home', compact('courses'));
+        return inertia('Home', [
+            'courses' => $courses,
+        ]);
     }
 
     public function learn(): Response

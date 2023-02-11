@@ -47,6 +47,6 @@ class AuthController extends Controller
 
         User::restore()?->destroy();
 
-        return redirect('/');
+        return redirect()->back();
     }
 }

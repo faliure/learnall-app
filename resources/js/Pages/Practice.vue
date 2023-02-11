@@ -1,6 +1,5 @@
 <script setup>
   import Translator from '@/Components/Translator.vue';
-  import axios from 'axios';
 
   defineProps({
     learnable: Object,

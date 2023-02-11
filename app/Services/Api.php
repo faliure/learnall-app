@@ -32,8 +32,11 @@ class Api
             return $this->request->$name(...$arguments);
         } catch (RequestException $e) {
             throw ValidationException::withMessages(
-                $e->response->json('errors')
-                    ?? "We're as surprised as you are. No idea what just happened..."
+                $e->response->json('errors') ?? [
+                    [ $e->getMessage() ]
+                ] ?? [
+                    "We're as surprised as you are. No idea what just happened..."
+                ]
             );
         }
     }
