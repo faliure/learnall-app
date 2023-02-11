@@ -83,4 +83,13 @@ class UserProvider implements AuthUserProvider
         return ($user->email === $credentials['email'])
             && Hash::check($credentials['password'], $user->getAuthPassword());
     }
+
+    public function refreshUserData(): ?array
+    {
+        if ($data = $this->api->get('/auth')->json('user')) {
+            $this->user->update($data);
+        }
+
+        return $data;
+    }
 }

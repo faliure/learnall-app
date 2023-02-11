@@ -19,9 +19,11 @@ class User implements Authenticatable, Arrayable
         session()->forget('proxy.user');
     }
 
-    public static function make(...$args)
+    public static function make($args)
     {
-        return new static(...$args);
+        $args = is_array($args) ? $args : func_get_args();
+
+        return new static($args);
     }
 
     public static function restore()
@@ -113,9 +115,10 @@ class User implements Authenticatable, Arrayable
     public function toArray()
     {
         return [
-            'id'    => $this->attributes['id'] ?? null,
-            'name'  => $this->attributes['name'] ?? null,
-            'email' => $this->attributes['email'] ?? null,
+            'id'              => $this->attributes['id'] ?? null,
+            'name'            =>  $this->attributes['name'] ?? null,
+            'email'           => $this->attributes['email'] ?? null,
+            'activeCourse_id' => $this->attributes['activeCourse_id'] ?? null,
         ];
     }
 }
