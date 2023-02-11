@@ -10,12 +10,12 @@ class PagesController extends Controller
 {
     public function home(Api $api): Response
     {
-        $languageId = 5; // TODO : replace wit the actual current language's ID
+        $courses = $api->get('courses', [
+            'with'  => [ 'language', 'fromLanguage' ],
+            'count' => [ 'units' ],
+        ])->json();
 
-        return inertia('Home', [
-            'languages' => $api->get('languages')->json(),
-            'learnable' => $api->get("languages/$languageId/learnable")->json(),
-        ]);
+        return inertia('Home', compact('courses'));
     }
 
     public function learn(): Response
@@ -23,9 +23,14 @@ class PagesController extends Controller
         return inertia('Learn');
     }
 
-    public function practice(): Response
+    public function practice(Api $api): Response
     {
-        return inertia('Practice');
+        $languageId = 5; // TODO : replace wit the actual current language's ID
+
+        return inertia('Practice', [
+            'languages' => $api->get('languages')->json(),
+            'learnable' => $api->get("languages/$languageId/learnable")->json(),
+        ]);
     }
 
     public function compete(): Response

@@ -21,7 +21,7 @@
       <nav class="hidden md:flex justify-center items-center w-full md:w-1/4 text-stone-800">
         <div v-if="$page.props.user" class="flex flex-col gap-4 text-right">
           <div class="text-sm text-gray-500">Welcome, {{ $page.props.user.name }}!</div>
-          <Link href="/logout" method="POST" class="opacity-70 hover:opacity-100">
+          <Link href="/logout" method="POST" as="button" class="opacity-70 hover:opacity-100 text-right">
               Logout</Link>
         </div>
       </nav>
