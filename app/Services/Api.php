@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Extensions\User;
+use App\Extensions\Auth\User;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Facades\Http;

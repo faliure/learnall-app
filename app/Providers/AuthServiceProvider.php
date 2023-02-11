@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Extensions\UserProvider;
+use App\Extensions\Auth\UserProvider;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Extensions;
+namespace App\Extensions\Auth;
 
 use App\Services\Api;
 use Illuminate\Contracts\Auth\Authenticatable;

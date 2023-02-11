@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Extensions\Controller;
-use App\Extensions\User;
+use App\Extensions\Auth\User;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegistrationRequest;
 use App\Providers\RouteServiceProvider;
