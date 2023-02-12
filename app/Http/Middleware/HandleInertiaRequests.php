@@ -25,6 +25,7 @@ class HandleInertiaRequests extends Middleware
             'location' => $request->url(),
             'env'      => app()->environment(),
             'course'   => $this->courseRepository->getActiveCourse(),
+            'response' => $request->session()->get('response'),
         ]);
     }
 }

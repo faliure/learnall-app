@@ -16,7 +16,7 @@ class User implements Authenticatable, Arrayable
 
     public function destroy(): void
     {
-        session()->forget('soon-to-be-gone-user');
+        cache()->forget('proxy.user');
     }
 
     public static function make($args)
@@ -28,7 +28,7 @@ class User implements Authenticatable, Arrayable
 
     public static function restore(): ?User
     {
-        return User::make(session('soon-to-be-gone-user', []));
+        return User::make(cache('proxy.user', []));
     }
 
     /**
@@ -38,7 +38,7 @@ class User implements Authenticatable, Arrayable
     {
         $this->attributes = $data + $this->attributes;
 
-        session()->put('soon-to-be-gone-user', $this->attributes);
+        cache(['proxy.user' => $this->attributes]);
 
         return $this;
     }
