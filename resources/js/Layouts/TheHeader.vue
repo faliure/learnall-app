@@ -19,7 +19,7 @@
             </div>
 
             <nav class="hidden md:flex justify-center items-center w-full md:w-1/4 text-stone-800">
-                <div v-if="$page.props.user" class="flex flex-col gap-2 text-right">
+                <div v-if="$page.props.course" class="flex flex-col gap-2 text-right">
                     <div class="flex text-sm text-gray-500">
                         <Link href="/courses">
                             <CourseFlag
