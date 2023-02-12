@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1f47dfabdeb2004babc9ecfd3f4d4eac",
+    "content-hash": "4378ef5786a351f9c7138dbbd4725253",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -2904,12 +2904,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pestphp/pest.git",
-                "reference": "e749af6d9174df83c3fb1a4a2564df092e1c3f2c"
+                "reference": "8a58e984fe388ecc916c96e7f2eb67acb24a69a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pestphp/pest/zipball/e749af6d9174df83c3fb1a4a2564df092e1c3f2c",
-                "reference": "e749af6d9174df83c3fb1a4a2564df092e1c3f2c",
+                "url": "https://api.github.com/repos/pestphp/pest/zipball/8a58e984fe388ecc916c96e7f2eb67acb24a69a6",
+                "reference": "8a58e984fe388ecc916c96e7f2eb67acb24a69a6",
                 "shasum": ""
             },
             "require": {
@@ -3007,7 +3007,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-02-11T18:25:37+00:00"
+            "time": "2023-02-12T01:20:37+00:00"
         },
         {
             "name": "pestphp/pest-plugin",

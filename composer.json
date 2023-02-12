@@ -1,8 +1,8 @@
 {
-    "name": "laravel/laravel",
+    "name": "faliure/learnall",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "LearnAll Online Language School",
+    "keywords": ["education", "school", "languages"],
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
