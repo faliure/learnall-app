@@ -15,11 +15,11 @@ class AuthController extends Controller
     /**
      * Handle an incoming registration request.
      */
-    public function register(RegistrationRequest $request, Api $api): RedirectResponse
+    public function register(RegistrationRequest $request, Api $api, UserProvider $users): RedirectResponse
     {
         $api->post('users', $request->all());
 
-        return $this->login($request);
+        return $this->login($request, $users);
     }
 
     /**
