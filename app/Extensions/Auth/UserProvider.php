@@ -10,25 +10,23 @@ use Illuminate\Support\Facades\Hash;
 
 class UserProvider implements AuthUserProvider
 {
-    protected ?User $user;
-
-    public function __construct(protected Request $request, protected Api $api)
-    {
-        $this->user = User::restore();
-    }
+    public function __construct(
+        protected Request $request,
+        protected Api $api
+    ) {}
 
     /**
      * Retrieve a user by their unique identifier.
      */
     public function retrieveById($id)
     {
-        if ($this->user?->id === $id) {
-            return $this->user;
+        if ($user = session("proxy.user.$id")) {
+            return User::from($user);
         }
 
-        $data = $this->api->get("/users/$id")->json();
+        $data = $this->api->asGuest()->get("/users/$id")->json();
 
-        return User::make($data);
+        return User::from($data);
     }
 
     /**
@@ -36,15 +34,7 @@ class UserProvider implements AuthUserProvider
      */
     public function retrieveByToken($id, $token)
     {
-        if ($this->user?->id === $id && $this->user?->getRememberToken() === $token) {
-            return $this->user;
-        }
-
-        $data = $this->api->get('/auth');
-        $user = $data->json('user');
-        $apiToken = $data->json('token');
-
-        return User::make($user + [ 'token' => $apiToken ]);
+        return $this->retrieveById($id);
     }
 
     /**
@@ -60,19 +50,15 @@ class UserProvider implements AuthUserProvider
      */
     public function retrieveByCredentials(array $credentials)
     {
-        if ($this->user?->email === $credentials['email']) {
-            return $this->user;
-        }
-
-        $data = $this->api->post('/auth', $credentials + [
+        $data = $this->api->asGuest()->post('/auth', $credentials + [
             'device' => request()->header('User-Agent'),
         ]);
 
         $userData = $data->json('user')
-                  + ['token' => $data->json('token')]
-                  + ['password' => Hash::make($credentials['password'])];
+                  + ['token'     => $data->json('token')]
+                  + ['password'  => Hash::make($credentials['password'])];
 
-        return User::make($userData);
+        return User::from($userData);
     }
 
     /**
@@ -84,12 +70,24 @@ class UserProvider implements AuthUserProvider
             && Hash::check($credentials['password'], $user->getAuthPassword());
     }
 
-    public function refreshUserData(): ?array
+    public function refreshUserData(): void
     {
         if ($data = $this->api->get('/auth')->json('user')) {
-            $this->user->update($data);
+            $this->storeUserData($data);
+        }
+    }
+
+    public function storeUserData(array $data = []): void
+    {
+        foreach ($data as $attribute => $value) {
+            me()->$attribute = $value;
         }
 
-        return $data;
+        session(['proxy.user.' . my('id') => me()->toArray()]);
+    }
+
+    public function forgetUserData()
+    {
+        session()->forget('proxy.user.' . my('id'));
     }
 }

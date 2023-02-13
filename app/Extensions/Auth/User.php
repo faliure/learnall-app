@@ -4,44 +4,19 @@ namespace App\Extensions\Auth;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Support\Arrayable;
+use Spatie\LaravelData\Data;
 
-class User implements Authenticatable, Arrayable
+class User extends Data implements Authenticatable, Arrayable
 {
-    protected array $attributes = [];
-
-    public function __construct(array $attributes = [])
-    {
-        $this->update($attributes);
-    }
-
-    public function destroy(): void
-    {
-        cache()->forget('proxy.user');
-    }
-
-    public static function make($args)
-    {
-        $args = is_array($args) ? $args : func_get_args();
-
-        return new static($args);
-    }
-
-    public static function restore(): ?User
-    {
-        return User::make(cache('proxy.user', []));
-    }
-
-    /**
-     * Update a property of this user, or add it if's missing.
-     */
-    public function update(array $data)
-    {
-        $this->attributes = $data + $this->attributes;
-
-        cache(['proxy.user' => $this->attributes]);
-
-        return $this;
-    }
+    public function __construct(
+        public int $id,
+        public string $email,
+        public string $name,
+        public ?string $password,
+        public ?string $remember_token,
+        public ?string $token,
+        public ?int $activeCourse_id,
+    ) {}
 
     /**
      * Get the name of the unique identifier for the user.
@@ -91,7 +66,7 @@ class User implements Authenticatable, Arrayable
      */
     public function setRememberToken($value)
     {
-        $this->update([ $this->getRememberTokenName() => $value ]);
+        $this->{$this->getRememberTokenName()} = $value;
     }
 
     /**
@@ -102,23 +77,5 @@ class User implements Authenticatable, Arrayable
     public function getRememberTokenName()
     {
         return 'remember_token';
-    }
-
-    /**
-     * Proxy attribute reads to the @attributes property keys.
-     */
-    public function __get($name)
-    {
-        return $this->attributes[$name] ?? null;
-    }
-
-    public function toArray()
-    {
-        return [
-            'id'              => $this->attributes['id'] ?? null,
-            'name'            =>  $this->attributes['name'] ?? null,
-            'email'           => $this->attributes['email'] ?? null,
-            'activeCourse_id' => $this->attributes['activeCourse_id'] ?? null,
-        ];
     }
 }

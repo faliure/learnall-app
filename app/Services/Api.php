@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Extensions\Auth\User;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Facades\Http;
@@ -10,27 +9,21 @@ use Illuminate\Validation\ValidationException;
 
 class Api
 {
-    protected PendingRequest $request;
+    protected bool $asGuest = false;
 
-    public function __construct()
+    public function asGuest(): self
     {
-        $this->request = Http::baseUrl(config('api.base_uri'))
-            ->retry(3, 100, throw: true)
-            ->connectTimeout(3)
-            ->timeout(5)
-            ->acceptJson()
-            ->withoutVerifying()
-            ->when(
-                User::restore()?->token,
-                fn ($http, $token) => $http->withToken($token)
-            );
+        $this->asGuest = true;
+
+        return $this;
     }
 
     public function __call($name, $arguments)
     {
         try {
-            return $this->request->$name(...$arguments);
+            return $this->getClient()->$name(...$arguments);
         } catch (RequestException $e) {
+            // dd($e, me(), $this->asGuest, debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS));
             throw ValidationException::withMessages(
                 $e->response->json('errors') ?? [
                     [ $e->getMessage() ]
@@ -39,5 +32,19 @@ class Api
                 ]
             );
         }
+    }
+
+    protected function getClient(): PendingRequest
+    {
+        return Http::baseUrl(config('api.base_uri'))
+            ->retry(3, 100, throw: true)
+            ->connectTimeout(3)
+            ->timeout(5)
+            ->acceptJson()
+            ->withoutVerifying()
+            ->when(
+                $this->asGuest ? false : my('token'),
+                fn ($http, $token) => $http->withToken($token)
+            );
     }
 }

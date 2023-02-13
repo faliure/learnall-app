@@ -6,7 +6,7 @@
         courses: Array,
     });
 
-    const activeCourse = (course) => usePage().props.user.activeCourse_id === course.id;
+    const activeCourse = (course) => usePage().props.user.course_id === course.id;
 </script>
 
 <template>

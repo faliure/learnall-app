@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Extensions\Auth\UserProvider;
 use App\Extensions\Controller;
-use App\Extensions\Auth\User;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegistrationRequest;
 use App\Providers\RouteServiceProvider;
@@ -25,13 +25,15 @@ class AuthController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function login(LoginRequest $request): RedirectResponse
+    public function login(LoginRequest $request, UserProvider $users): RedirectResponse
     {
         $credentials = $request->merge([
             'device' => $request->header('User-Agent'),
         ])->all();
 
-        auth()->attempt($credentials);
+        if (auth()->attempt($credentials)) {
+            $users->storeUserData();
+        }
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
@@ -39,13 +41,13 @@ class AuthController extends Controller
     /**
      * Destroy an authenticated session.
      */
-    public function logout(Api $api): RedirectResponse
+    public function logout(Api $api, UserProvider $users): RedirectResponse
     {
         $api->delete('auth');
 
-        auth()->logout();
+        $users->forgetUserData();
 
-        User::restore()?->destroy();
+        auth()->logout();
 
         return redirect()->back();
     }
