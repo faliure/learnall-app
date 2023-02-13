@@ -27,11 +27,11 @@ class PagesController extends Controller
 
     public function practice(Api $api): Response
     {
-        $languageId = 5; // TODO : replace wit the actual current language's ID
-
         return inertia('Practice', [
             'languages' => $api->get('languages')->json(),
-            'learnable' => $api->get("languages/$languageId/learnable")->json(),
+            'learnable' => $api->get('learnables/*', [
+                'with' => [ 'translation' ],
+            ])->json(),
         ]);
     }
 
