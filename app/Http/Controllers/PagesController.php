@@ -11,8 +11,8 @@ class PagesController extends Controller
     public function home(Api $api): Response
     {
         $courses = $api->get('courses', [
-            'with'  => [ 'language', 'fromLanguage' ],
-            'count' => [ 'units' ],
+            'withRelations' => [ 'language', 'fromLanguage' ],
+            'withCounters'  => [ 'units' ],
         ])->json();
 
         return inertia('Home', [
@@ -28,8 +28,9 @@ class PagesController extends Controller
     public function practice(Api $api): Response
     {
         return inertia('Practice', [
-            'learnable' => $api->get('learnables/*', [
-                'with' => [ 'translation' ],
+            'learnables' => $api->get('learnables/*', [
+            'withRelations'  => [ 'translation'/*, 'translations' */ ],
+                'count'          => 20,
             ])->json(),
         ]);
     }

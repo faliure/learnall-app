@@ -23,8 +23,8 @@ class SecondaryPagesController extends Controller
     public function courses(Api $api): Response
     {
         $courses = $api->get('courses', [
-            'with'  => [ 'language', 'fromLanguage' ],
-            'count' => [ 'units' ],
+            'withRelations' => [ 'language', 'fromLanguage' ],
+            'withCounters'  => [ 'units' ],
         ])->json();
 
         return inertia('Secondary/SelectCourse', [

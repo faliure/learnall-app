@@ -20,7 +20,7 @@ class CourseRepository
         }
 
         $course = $this->api->get("/courses/$courseId", [
-            'with' => [ '*' ],
+            'withRelations' => [ '*' ],
         ])->json();
 
         return cache('activeCourse', CourseData::from($course));

@@ -1,41 +1,42 @@
 <script setup>
-    import { ref, onMounted } from 'vue';
-    import { router } from '@inertiajs/vue3';
+    import { ref, watch } from 'vue';
     import PrimaryButton from '@/Components/PrimaryButton.vue';
-    import Practice from './Icons/Practice.vue';
     import { getCurrentPage } from '@/Shared/pages';
 
-    onMounted(() => {
-        guessInput.value.focus();
-    });
+    const emit = defineEmits([
+        'done',
+    ]);
 
     const props = defineProps({
-        original: String,
-        translate: String,
+        learnable: Object,
     });
 
-    const guess = ref('');
-    const lastGuess = ref('');
-    const guessInput = ref(null);
+    const color           = getCurrentPage().color;
+    const guess           = ref(null);
+    const guessInput      = ref(null);
     const showTranslation = ref(false);
-    const color = getCurrentPage().color;
+    const learnableText   = ref(null);
+    const translation     = ref(null);
 
-    const next = () => {
-        guess.value = '';
+    watch(props.learnable, (learnable) => {
+        if (! learnable.value) {
+            return;
+        }
+
+        guess.value           = '';
         showTranslation.value = false;
-        lastGuess.value = `${props.original} (${props.translate})`;
-
-        router.reload({ only: Practice });
+        learnableText.value   = learnable.value.learnable;
+        translation.value     = learnable.value.translation;
 
         guessInput.value.focus();
-    }
+    });
 
     const check = () => {
-        const correct = matches(guess.value, props.translate);
+        const correct = matches(guess.value, translation.value);
 
         showTranslation.value = ! correct;
 
-        correct && next();
+        correct && emit('done', true); // Solved = true
     };
 
     const clean = x => x.toLowerCase()
@@ -60,8 +61,8 @@
                 :class="`text-${color}-900`"
                 @click="showTranslation = true"
                 title="Click to show translation"
-            >{{ original }}</div>
-            <div class="w-4/5 mx-auto text-xs" v-if="showTranslation">{{ translate }}</div>
+            >{{ learnableText }}</div>
+            <div class="w-4/5 mx-auto text-xs" v-if="showTranslation">{{ translation }}</div>
         </div>
 
         <input
@@ -75,23 +76,22 @@
         />
 
         <div class="flex flex-row m-auto justify-around gap-6 text-sm mt-6">
-            <PrimaryButton @click="check" :color="color">
+            <PrimaryButton
+                @click="check"
+                :color="color"
+                :class="`text-${color}-100 bg-${color}-900`"
+            >
                 Submit
             </PrimaryButton>
 
             <PrimaryButton
-                @click="next"
+                @click="$emit('done', false)"
                 class="bg-transparent border"
                 :class="`text-${color}-500 border-${color}-100`"
                 :color="color"
             >
                 Skip <span class="text-lg align-middle ml-1">😞</span>
             </PrimaryButton>
-        </div>
-
-        <div v-if="lastGuess" class="p-6 text-sm mx-auto text-center text-gray-400">
-            <div>Previous Translation</div>
-            <div class="text-gray-800">{{ lastGuess }}</div>
         </div>
     </section>
 </template>
