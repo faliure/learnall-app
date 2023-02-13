@@ -28,7 +28,6 @@ class PagesController extends Controller
     public function practice(Api $api): Response
     {
         return inertia('Practice', [
-            'languages' => $api->get('languages')->json(),
             'learnable' => $api->get('learnables/*', [
                 'with' => [ 'translation' ],
             ])->json(),
