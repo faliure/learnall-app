@@ -63,7 +63,12 @@
                     Don't have an account yet?
                 </Link>
 
-                <PrimaryButton type="submit" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <PrimaryButton
+                    type="submit"
+                    class="text-blue-100 bg-blue-900 "
+                    :class="{ 'opacity-25': form.processing }"
+                    :disabled="form.processing"
+                >
                     Log in
                 </PrimaryButton>
             </div>
