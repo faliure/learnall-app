@@ -9,6 +9,7 @@
 
 <template>
   <Translator
+    v-if="learnable"
     :original="learnable.learnable"
     :translate="learnable.translation.translation"
   />
