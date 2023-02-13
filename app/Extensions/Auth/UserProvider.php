@@ -21,6 +21,7 @@ class UserProvider implements AuthUserProvider
     public function retrieveById($id)
     {
         if ($user = session("proxy.user.$id")) {
+            // TODO : hit GET /auth to ensure the token is still valid and get latest data
             return User::from($user);
         }
 

@@ -30,7 +30,7 @@ class PagesController extends Controller
         return inertia('Practice', [
             'learnables' => $api->get('learnables/*', [
             'withRelations'  => [ 'translation'/*, 'translations' */ ],
-                'count'          => 20,
+                'count'          => 50,
             ])->json(),
         ]);
     }
