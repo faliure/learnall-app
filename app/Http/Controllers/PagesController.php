@@ -11,8 +11,7 @@ class PagesController extends Controller
     public function home(Api $api): Response
     {
         $courses = $api->get('courses', [
-            'withRelations' => [ 'language', 'fromLanguage' ],
-            'withCounters'  => [ 'units' ],
+            'withRelations' => [ 'language', 'fromLanguage', 'units' ],
         ])->json();
 
         return inertia('Home', [
