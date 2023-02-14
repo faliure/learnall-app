@@ -22,7 +22,7 @@
       />
 
       <main class="flex-1 h-full md:-mt-3 p-3 overflow-y-auto
-        bg-gradient-to-b from-stone-50 rounded-xl backdrop-opacity-50">
+        bg-gradient-to-t from-zinc-50 rounded-xl">
         <slot />
       </main>
 

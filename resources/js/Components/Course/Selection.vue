@@ -15,14 +15,13 @@
 </script>
 
 <template>
-    <section>
-        <div class="-m-3 mb-3 px-5 py-3 bg-white bg-opacity-50">
-            <div class="text-sm tracking-wider font-stone-900 uppercase opacity-30">
-                What will you learn today?
-            </div>
+    <section class="flex flex-col relative overflow-hidden h-full">
+        <div class="w-full absolute right-0 top-0 p-4 text-right text-xs tracking-wider text-zinc-900 uppercase opacity-60
+                    bg-gradient-to-l from-blue-200 rounded-full">
+            What will you learn today?
         </div>
 
-        <div class="flex flex-col gap-6">
+        <div class="px-2 flex flex-col gap-6 mt-16 overflow-auto">
             <CoursesByLang
                 v-for="nativeLang in nativeLangs()"
                 :courses="forSpeakersOf(nativeLang)"
