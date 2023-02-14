@@ -16,7 +16,7 @@
     </div>
 
     <section>
-        <div class="flex flex-wrap gap-y-5 justify-center w-full">
+        <div class="flex flex-wrap gap-y-8 justify-center w-full">
             <Card
                 v-for="(unit, index) in course.units"
                 :unit="unit"

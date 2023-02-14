@@ -21,9 +21,10 @@
         class="flex md:flex-col justify-around md:justify-start md:w-1/4 min-w-fit overflow-y-auto pb-2"
       />
 
-      <main class="flex-1 h-full md:-mt-3 p-3 overflow-y-auto
-        bg-gradient-to-t from-zinc-50 rounded-xl">
+      <main class="flex-1 h-full relative md:-mt-3 overflow-y-auto bg-gradient-to-t from-zinc-50 via-white rounded-xl">
         <slot />
+
+        <div class="absolute bottom-0 h-6 w-full bg-gradient-to-t from-zinc-50 z-10"></div>
       </main>
 
       <TheHighlights
