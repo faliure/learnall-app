@@ -94,7 +94,10 @@
                     Already registered?
                 </Link>
 
-                <PrimaryButton type="submit" class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <PrimaryButton
+                    type="submit"
+                    class="ml-4 text-blue-100 bg-blue-900"
+                    :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Register
                 </PrimaryButton>
             </div>
