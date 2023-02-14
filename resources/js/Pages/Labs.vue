@@ -1,3 +1,3 @@
 <template>
-  <div class="flex pt-20 justify-center my-auto">Site under construction</div>
+  <div class="flex pt-20 justify-center my-auto">Page under construction</div>
 </template>>

@@ -23,6 +23,7 @@ class Api
         try {
             return $this->getClient()->$name(...$arguments);
         } catch (RequestException $e) {
+            dd($e);
             // dd($e, me(), $this->asGuest, debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS));
             throw ValidationException::withMessages(
                 $e->response->json('errors') ?? [
