@@ -4,6 +4,13 @@
     const props = defineProps({
         course: Object,
     });
+
+    const cellClass = (index) => {
+        const colStart = ((index * 2 + 1) % 5) || 5;
+        const opacity  = index < 4 ? 'opacity-100' : 'opacity-40';
+
+        return `col-start-${colStart} ${opacity}`;
+    };
 </script>
 
 <template>
@@ -16,15 +23,13 @@
     </div>
 
     <section>
-        <div class="flex flex-wrap gap-y-8 justify-center w-full">
+        <div class="grid gap-x-5 gap-y-8 place-content-center">
             <Card
                 v-for="(unit, index) in course.units"
                 :unit="unit"
                 :index="index"
-                :class="[
-                    index % 5 < 3 ? 'w-1/3' : 'w-2/5',
-                    index < 4 ? 'opacity-100' : 'opacity-40',
-                ]"
+                :class="cellClass(index)"
+                class="col-span-2"
             />
         </div>
     </section>

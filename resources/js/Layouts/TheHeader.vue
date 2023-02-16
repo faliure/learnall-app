@@ -29,6 +29,7 @@
                                 :fromLang="$page.props.course.fromLanguage"
                                 :toLang="$page.props.course.language"
                                 class="cursor-pointer"
+                                @click="(e) => $page.url === '/courses' ? e.stopPropagation() & e.preventDefault() : ''"
                             />
                         </Link>
                     </div>
