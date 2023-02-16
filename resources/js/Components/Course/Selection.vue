@@ -15,7 +15,7 @@
 </script>
 
 <template>
-    <section class="flex flex-col relative overflow-hidden h-full">
+    <section class="flex flex-col relative overflow-hidden h-full p-1">
         <div class="w-full absolute right-0 top-0 bg-transparent">
             <div class="p-4 text-right text-xs tracking-wider text-zinc-900 uppercase
                         bg-gradient-to-l from-blue-200 rounded-full opacity-60">

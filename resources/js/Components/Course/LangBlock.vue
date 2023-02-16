@@ -16,7 +16,7 @@
             <div class="ml-2 text-sm text-stone-900 opacity-40">{{ courses[0].fromLanguage.name }} speakers</div>
         </div>
 
-        <div class="flex flex-wrap justify-items-stretch gap-4 w-full p-2 bg-stone-200 bg-opacity-10 rounded-xl">
+        <div class="grid grid-cols-[repeat(auto-fit,minmax(12rem,0.5fr))] gap-2 bg-stone-200 bg-opacity-10 rounded-xl">
             <CourseCard
                 v-for="course in courses"
                 :course="course"
@@ -24,7 +24,7 @@
                     'cursor-default shadow-lg bg-opacity-30': activeCourse(course),
                     'cursor-pointer bg-opacity-5 hover:bg-opacity-30': ! activeCourse(course),
                 }"
-                class="flex items-center grow gap-2 p-3 rounded-lg bg-stone-900 shadow-md hover:shadow-lg"
+                class="flex items-center gap-2 p-2 min-w-fit rounded-lg bg-stone-900 shadow-md hover:shadow-lg"
             />
         </div>
     </div>

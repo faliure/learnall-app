@@ -16,6 +16,10 @@ module.exports = {
             pattern: /(bg|text|ring|border(-[btlr])?|fill|via)-(blue|emerald|violet|stone|cyan|lime|orange|pink|gray)-(50|[1-9]00)/ ,
             variants: ['lg', 'hover', 'focus'],
         },
+        {
+            pattern: /col-start-\d/,
+            variants: ['sm', 'md', 'lg'],
+        }
     ],
 
     theme: {

@@ -6,7 +6,7 @@
     });
 
     const cellClass = (index) => {
-        const colStart = ((index * 2 + 1) % 5) || 5;
+        const colStart = ((index * 2) % 5) + 1;
         const opacity  = index < 4 ? 'opacity-100' : 'opacity-40';
 
         return `col-start-${colStart} ${opacity}`;
