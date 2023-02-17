@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "@headlessui/vue": "^1.7.9",
+        "@tailwindcss/line-clamp": "^0.4.2",
         "tailwind-scrollbar-hide": "^1.1.7",
         "vite": "^4.1.1"
     }

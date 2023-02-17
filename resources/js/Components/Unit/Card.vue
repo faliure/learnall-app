@@ -14,7 +14,7 @@
             :title="unit.description"
         ></div>
 
-        <div class="h-8 w-12 sm:w-20 mt-2 text-center overflow-hidden text-ellipsis text-xs opacity-40">
+        <div class="h-8 w-12 sm:w-20 mt-2 text-center line-clamp-2 text-xs opacity-40">
             {{ unit.name }}
         </div>
     </section>

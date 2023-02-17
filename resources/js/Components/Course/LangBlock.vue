@@ -16,7 +16,7 @@
             <div class="ml-2 text-sm text-stone-900 opacity-40">{{ courses[0].fromLanguage.name }} speakers</div>
         </div>
 
-        <div class="grid grid-cols-[repeat(auto-fit,minmax(12rem,0.5fr))] gap-2 bg-stone-200 bg-opacity-10 rounded-xl">
+        <div class="grid grid-cols-[repeat(auto-fill,minmax(12rem,0.5fr))] gap-2 bg-stone-200 bg-opacity-10 rounded-xl">
             <CourseCard
                 v-for="course in courses"
                 :course="course"
