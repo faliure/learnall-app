@@ -7,6 +7,7 @@ const langVoiceMap = {
     Esperanto   : 'Esperanto Male',
     Welsh       : 'Welsh Male',
     Swahili     : 'Swahili Male',
+    German      : 'Deutsch Female',
 
     Ukrainian        : 'Ukrainian Female',
     Bengali          : null,
