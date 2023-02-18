@@ -17,9 +17,12 @@
     </head>
     <body class="font-sans antialiased bg-gradient-to-r from-[#0057b7] to-[#ffd700]">
         @inertia
-    </body>
 
-    <script lang="ts">
-        window.environment = '{{ app()->environment() }}';
-    </script>
+        <!-- TTS -->
+        <script src="https://code.responsivevoice.org/responsivevoice.js?key=ATIzEWvD"></script>
+
+        <script lang="ts">
+            window.environment = '{{ app()->environment() }}';
+        </script>
+    </body>
 </html>

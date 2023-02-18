@@ -43,9 +43,9 @@ class AuthController extends Controller
      */
     public function logout(Api $api, UserProvider $users): RedirectResponse
     {
-        $api->delete('auth');
-
         $users->forgetUserData();
+
+        $api->delete('auth');
 
         auth()->logout();
 

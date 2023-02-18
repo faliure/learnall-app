@@ -2,6 +2,8 @@
     import { ref, watch } from 'vue';
     import PrimaryButton from '@/Components/PrimaryButton.vue';
     import { getCurrentPage } from '@/Shared/pages';
+    import { speak } from '@/Shared/tts';
+    import speakerUrl from '/resources/img/speaker.png';
 
     const emit = defineEmits([
         'done',
@@ -57,11 +59,16 @@
     <section class="flex flex-col center-items text-center h-full py-6">
         <div class="h-16 w-4/5 mx-auto font-bold">
             <div
-                class="py-2 rounded-2xl text-xl cursor-pointer"
+                class="flex justify-center items-center gap-3 py-2 rounded-2xl text-xl cursor-pointer"
                 :class="`text-${color}-900`"
-                @click="showTranslation = true"
                 title="Click to show translation"
-            >{{ learnableText }}</div>
+            >
+                <img :src="speakerUrl" class="h-5 w-5" @click="speak(learnable, 0.8)" />
+
+                <div @click="showTranslation = true">
+                    {{ learnableText }}
+                </div>
+            </div>
             <div class="w-4/5 mx-auto text-xs" v-if="showTranslation">{{ translation }}</div>
         </div>
 

@@ -28,7 +28,7 @@ class PagesController extends Controller
     {
         return inertia('Practice', [
             'learnables' => $api->get('learnables/*', [
-            'withRelations'  => [ 'translation'/*, 'translations' */ ],
+                'withRelations'  => [ 'translation', 'translations', 'language' ],
                 'count'          => 50,
             ])->json(),
         ]);
