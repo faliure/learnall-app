@@ -63,7 +63,7 @@
                 :class="`text-${color}-900`"
                 title="Click to show translation"
             >
-                <img :src="speakerUrl" class="h-5 w-5" @click="speak(learnable, 0.8)" />
+                <img :src="speakerUrl" class="h-5 w-5 mt-0.5" @click="speak(learnable, 0.8)" />
 
                 <div @click="showTranslation = true">
                     {{ learnableText }}
