@@ -2,6 +2,7 @@
 
 namespace App\Extensions\Auth;
 
+use App\Data\CourseData;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Support\Arrayable;
 use Spatie\LaravelData\Data;
@@ -15,7 +16,8 @@ class User extends Data implements Authenticatable, Arrayable
         public ?string $password,
         public ?string $remember_token,
         public ?string $token,
-        public ?int $activeCourse_id,
+        public ?int $activeCourseId,
+        public ?CourseData $activeCourse,
     ) {}
 
     /**

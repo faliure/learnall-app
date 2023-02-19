@@ -25,7 +25,7 @@ class HandleInertiaRequests extends Middleware
                 'id'        => me()->id,
                 'name'      => me()->name,
                 'email'     => me()->email,
-                'course_id' => me()->activeCourse_id,
+                'course_id' => me()->activeCourseId,
             ],
             'location' => $request->url(),
             'env'      => app()->environment(),

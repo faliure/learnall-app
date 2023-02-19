@@ -13,7 +13,7 @@ class CourseRepository
 
     public function getActiveCourse(): ?CourseData
     {
-        if (! $courseId = my('activeCourse_id')) {
+        if (! $courseId = my('activeCourseId')) {
             return null;
         } elseif (cache('activeCourse')?->id === $courseId) {
             return cache('activeCourse');
