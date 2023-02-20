@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Extensions\Controller;
+use App\Repositories\CourseRepository;
 use App\Services\Api;
 use Inertia\Response;
 
@@ -20,26 +21,28 @@ class SecondaryPagesController extends Controller
         return inertia('Auth/Register');
     }
 
-    public function courses(Api $api): Response
+    public function courses(CourseRepository $coursesRepo): Response
     {
-        $courses = $api->get('courses', [
-            'withRelations' => [ 'language', 'fromLanguage' ],
-            'withCounters'  => [ 'units' ],
-        ])->json();
+        $courses = $coursesRepo->all(
+            withRelations: [ 'language', 'fromLanguage' ],
+            withCounters: [ 'units' ],
+        );
 
         return inertia('Secondary/SelectCourse', [
             'courses' => $courses,
         ]);
     }
 
-    public function units(Api $api, int $unitId): Response
+    public function unit(Api $api, string $unitId): Response
     {
         return inertia('Unit', [
-            'unit' => $api->get("units/$unitId")->json(),
+            'unit' => $api->get("units/$unitId", [
+                'withRelations' => [ 'lessons' ],
+            ])->json(),
         ]);
     }
 
-    public function lessons(Api $api, int $lessonId): Response
+    public function lesson(Api $api, int $lessonId): Response
     {
         return inertia('Lesson', [
             'lesson' => $api->get("lessons/$lessonId")->json(),

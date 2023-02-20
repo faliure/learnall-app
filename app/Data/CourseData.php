@@ -14,5 +14,6 @@ class CourseData extends Data
         public ?array  $language,
         public ?array $fromLanguage,
         public ?array $units,
-    ) {}
+    ) {
+    }
 }

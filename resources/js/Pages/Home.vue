@@ -4,10 +4,11 @@
 
     const props = defineProps({
       courses: Array,
+      course: Object,
     });
 </script>
 
 <template>
-    <CourseSelection v-if="! $page.props.course" :courses="courses" />
-    <Course v-else :course="$page.props.course" />
+    <Course v-if="course" :course="course" />
+    <CourseSelection v-else :courses="courses" />
 </template>

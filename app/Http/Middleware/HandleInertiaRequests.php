@@ -8,9 +8,8 @@ use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
 {
-    public function __construct(
-        protected CourseRepository $courseRepository
-    ) {
+    public function __construct(protected CourseRepository $courseRepository)
+    {
     }
 
     /**
@@ -26,10 +25,12 @@ class HandleInertiaRequests extends Middleware
                 'name'      => me()->name,
                 'email'     => me()->email,
                 'course_id' => me()->activeCourseId,
+                'course'    => $this->courseRepository->active(
+                    withRelations: [ 'fromLanguage', 'language' ],
+                ),
             ],
             'location' => $request->url(),
             'env'      => app()->environment(),
-            'course'   => $this->courseRepository->getActiveCourse(),
             'response' => $request->session()->get('response'),
         ]);
     }

@@ -17,7 +17,7 @@
 
     <section class="flex flex-col justify-center md:flex-row flex-1 overflow-hidden md:p-6 md:pt-10">
       <TheSidebar
-        v-if="$page.props.user && $page.props.course"
+        v-if="$page.props.user && $page.props.user.course"
         class="flex md:flex-col justify-around md:justify-start md:w-1/4 min-w-fit overflow-y-auto pb-2"
       />
 
@@ -28,7 +28,7 @@
       </main>
 
       <TheHighlights
-        v-if="$page.props.user && $page.props.course"
+        v-if="$page.props.user && $page.props.user.course"
         class="hidden lg:block w-1/4 px-3"
       />
     </section>

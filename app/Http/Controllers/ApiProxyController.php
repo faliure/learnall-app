@@ -21,7 +21,8 @@ class ApiProxyController extends Controller
         protected Api $api,
         protected Request $request,
         protected UserProvider $provider,
-    ) {}
+    ) {
+    }
 
     public function __invoke()
     {

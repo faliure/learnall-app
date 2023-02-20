@@ -5,6 +5,14 @@
         course: Object,
     });
 
+    const units = [ ...props.course.units ].map(unit => ({ ...unit }));
+    const groups = Object.fromEntries(units.map(unit => [ `L${unit.levelId}`, []]));
+
+    units.forEach(unit => groups[`L${unit.levelId}`].push(unit));
+
+    const levels = Object.values(groups).sort((l1, l2) => l1[0].levelId - l2[0].levelId);
+    levels.forEach(level => level.sort((u1, u2) => u1.id - u2.id));
+
     const cellClass = (index) => {
         const colStart = ((index * 2) % 5) + 1;
         const opacity  = index < 4 ? 'opacity-100' : 'opacity-40';
@@ -22,14 +30,12 @@
         <hr class="mt-4 mb-6" />
     </div>
 
-    <section>
-        <div class="grid gap-x-5 gap-y-8 place-content-center">
+    <section class="h-full overflow-auto scrollbar-hide flex flex-col gap-y-16">
+        <div v-for="level in levels" class="flex flex-1 gap-8 justify-center">
             <Card
-                v-for="(unit, index) in course.units"
+                v-for="(unit, index) in level"
                 :unit="unit"
                 :index="index"
-                :class="cellClass(index)"
-                class="col-span-2"
             />
         </div>
     </section>

@@ -3,19 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Extensions\Controller;
+use App\Repositories\CourseRepository;
 use App\Services\Api;
 use Inertia\Response;
 
 class PagesController extends Controller
 {
-    public function home(Api $api): Response
+    public function home(CourseRepository $coursesRepo): Response
     {
-        $courses = $api->get('courses', [
-            'withRelations' => [ 'language', 'fromLanguage', 'units' ],
-        ])->json();
+        $courses = my('activeCourseId') ? null : $coursesRepo->all(
+            withRelations: [ 'language', 'fromLanguage' ]
+        );
 
         return inertia('Home', [
             'courses' => $courses,
+            'course'  => $coursesRepo->active(withRelations: [ 'units' ]),
         ]);
     }
 

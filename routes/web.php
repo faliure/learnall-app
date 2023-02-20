@@ -26,8 +26,8 @@ Route::controller(PagesController::class)->group(function () {
 
 Route::controller(SecondaryPagesController::class)->group(function () {
     Route::get('/courses', 'courses');
-    Route::get('/units/{unitId}', 'units')->name('units');
-    Route::get('/lessons/{lessonId}', 'lessons')->name('lessons');
+    Route::get('/units/{unitId}', 'unit')->name('unit.show');
+    Route::get('/lessons/{lessonId}', 'lesson')->name('lesson.show');
 });
 
 Route::controller(InternalPagesController::class)->group(function () {

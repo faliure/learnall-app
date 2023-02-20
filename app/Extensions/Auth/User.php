@@ -18,7 +18,8 @@ class User extends Data implements Authenticatable, Arrayable
         public ?string $token,
         public ?int $activeCourseId,
         public ?CourseData $activeCourse,
-    ) {}
+    ) {
+    }
 
     /**
      * Get the name of the unique identifier for the user.

@@ -1,7 +1,6 @@
 <?php
 
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Contracts\Support\Arrayable;
+use App\Extensions\Auth\User;
 use Illuminate\Support\Arr;
 
 /******************************************************************************
@@ -11,7 +10,7 @@ use Illuminate\Support\Arr;
 /**
  * Get the currently authenticated user, with proper type hint.
  */
-function currentUser(): (Authenticatable & Arrayable) | null
+function currentUser(): ?User
 {
     return auth()->user();
 }
@@ -19,7 +18,7 @@ function currentUser(): (Authenticatable & Arrayable) | null
 /**
  * Syntactic sugar for currentUser().
  */
-function me(): (Authenticatable & Arrayable) | null
+function me(): ?User
 {
     return currentUser();
 }

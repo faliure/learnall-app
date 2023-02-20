@@ -11,7 +11,15 @@ class CourseRepository
     {
     }
 
-    public function getActiveCourse(): ?CourseData
+    public function all(array $withRelations = [], array $withCounters = []): array
+    {
+        return $this->api->get('courses', [
+            'withRelations' => $withRelations,
+            'withCounters'  => $withCounters,
+        ])->json();
+    }
+
+    public function active(array $withRelations = [], array $withCounters = []): ?CourseData
     {
         if (! $courseId = my('activeCourseId')) {
             return null;
@@ -20,7 +28,8 @@ class CourseRepository
         }
 
         $course = $this->api->get("/courses/$courseId", [
-            'withRelations' => [ '*' ],
+            'withRelations' => $withRelations,
+            'withCounters'  => $withCounters,
         ])->json();
 
         return cache('activeCourse', CourseData::from($course));

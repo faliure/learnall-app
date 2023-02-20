@@ -21,13 +21,13 @@
             <nav class="hidden md:flex justify-center items-center w-full md:w-1/4 text-stone-800">
                 <div v-if="$page.props.user" class="flex flex-col gap-2 text-right">
                     <div
-                        v-if="$page.props.course"
+                        v-if="$page.props.user.course"
                         class="flex pt-1 pl-2 p-3 text-sm align-middle justify-center text-gray-500 hover:shadow-md hover:bg-gray-100 rounded-full"
                     >
                         <Link href="/courses">
                             <CourseFlag
-                                :fromLang="$page.props.course.fromLanguage"
-                                :toLang="$page.props.course.language"
+                                :fromLang="$page.props.user.course.fromLanguage"
+                                :toLang="$page.props.user.course.language"
                                 class="cursor-pointer"
                                 @click="(e) => $page.url === '/courses' ? e.stopPropagation() & e.preventDefault() : ''"
                             />

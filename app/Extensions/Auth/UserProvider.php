@@ -13,7 +13,8 @@ class UserProvider implements AuthUserProvider
     public function __construct(
         protected Request $request,
         protected Api $api
-    ) {}
+    ) {
+    }
 
     /**
      * Retrieve a user by their unique identifier.
