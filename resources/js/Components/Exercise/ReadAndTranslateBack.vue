@@ -56,37 +56,56 @@
 </script>
 
 <template>
-    <section class="flex flex-col center-items text-center h-full py-6">
-        <div class="h-16 w-4/5 mx-auto font-bold">
-            <div
-                class="flex justify-center items-center gap-3 py-2 rounded-2xl text-xl cursor-pointer"
-                :class="`text-blue-900`"
-                title="Click to show translation"
-            >
-                <img :src="speakerUrl" class="h-5 w-5 mt-0.5" @click="say" />
-
-                <div @click="showTranslation = true">
-                    {{ learnable.learnable }}
-                </div>
-            </div>
-            <div class="w-4/5 mx-auto text-xs" v-if="showTranslation">{{ translation() }}</div>
+    <section class="flex flex-col h-full pb-10">
+        <div class="w-4/5 mx-auto text-right text-2xl font-extralight text-gray-600 opacity-60 mb-10">
+            {{ exercise.type.description }}
         </div>
 
-        <textarea
-            ref="guessInput"
-            v-model="guess"
-            :placeholder="exercise.type.description"
-            class="my-4 mx-auto w-4/5 text-center rounded-lg py-2 border-none placeholder-gray-400"
-            :class="`bg-blue-900 bg-opacity-5 focus:ring-blue-200`"
-        />
+        <div class="flex-1 w-4/5 mx-auto font-bold">
+            <div>
+                <div
+                    class="flex gap-3 py-2 items-center leading-none rounded-2xl text-xl cursor-pointer text-stone-900"
+                    title="Click to show translation"
+                >
+                    <div class="flex-shrink-0 rounded-full p-5 mr-2 bg-stone-900 bg-opacity-10">
+                        <img :src="speakerUrl" class="h-8 w-8" @click="say" />
+                    </div>
 
-        <div class="flex flex-row m-auto justify-around gap-6 text-sm mt-6">
+                    <div>
+                        <div @hover="showTranslation = true" @click="showTranslation = true">
+                            {{ learnable.learnable }}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <textarea
+                ref="guessInput"
+                v-model="guess"
+                rows="5"
+                data-enable-grammarly="false"
+                class="mt-8 mx-auto w-full rounded-lg py-2 border-none placeholder-gray-400
+                     bg-gray-300 bg-opacity-5 ring-1 ring-blue-100 focus:ring-blue-400"
+            />
+        </div>
+
+        <div class="h-18 w-4/5 mx-auto text-xs">
+            <div v-if="showTranslation" class="h-full p-3 rounded-xl text-lg text-blue-900 opacity-90 bg-blue-900 bg-opacity-10">
+                <div class="text-xs font-bold pb-3">Translation</div>
+                <div>{{ translation() }}</div>
+            </div>
+        </div>
+
+
+        <div class="flex flex-row mx-auto justify-around gap-6 text-sm mt-6">
             <PrimaryButton
-                @click="check"
+                @click="guess ? check() : null"
                 :color="color"
-                :class="`text-blue-100 bg-blue-900`"
+                :class="guess ? 'cursor-pointer opacity-100' : 'cursor-not-allowed opacity-40'"
+                class="px-20 text-blue-100 bg-blue-900"
             >
-                Submit
+                Check
             </PrimaryButton>
         </div>
     </section>

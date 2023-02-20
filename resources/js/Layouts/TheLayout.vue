@@ -18,7 +18,7 @@
     <section class="flex flex-col-reverse justify-center md:flex-row flex-1 overflow-hidden md:p-6 md:pt-10">
       <TheSidebar
         v-if="$page.props.user && $page.props.user.course"
-        class="flex flex-wrap md:flex-col justify-around md:justify-start mt-4 md:mt-0 md:w-1/4 min-w-fit overflow-y-auto pb-2"
+        class="flex md:flex-col justify-around md:justify-start flex-wrap md:flex-nowrap mt-4 md:mt-0 md:w-1/4 min-w-fit overflow-y-auto pb-2"
       />
 
       <main class="flex-1 h-full relative md:-mt-3 overflow-y-auto bg-gradient-to-t from-zinc-50 via-white rounded-xl">

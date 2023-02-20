@@ -9,9 +9,7 @@
 </script>
 
 <template>
-    <section>
-        <ReadAndTranslateBack v-if="exercise" :exercise="exercise" />
+    <ReadAndTranslateBack v-if="exercise" :exercise="exercise" />
 
-        <div v-else>Oops! Looks like this lesson has no exercises yet :-/</div>
-    </section>
+    <div v-else>Oops! Looks like this lesson has no exercises yet :-/</div>
 </template>
