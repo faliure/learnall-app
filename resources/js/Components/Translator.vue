@@ -1,5 +1,6 @@
 <script setup>
     import { ref, watch } from 'vue';
+    import { usePage } from '@inertiajs/vue3';
     import PrimaryButton from '@/Components/PrimaryButton.vue';
     import { getCurrentPage } from '@/Shared/pages';
     import { speak } from '@/Shared/tts';
@@ -18,7 +19,9 @@
     const guessInput      = ref(null);
     const showTranslation = ref(false);
     const learnableText   = ref(null);
-    const translation     = ref(null);
+
+    let translation,
+        translations;
 
     watch(props.learnable, (learnable) => {
         if (! learnable.value) {
@@ -28,17 +31,26 @@
         guess.value           = '';
         showTranslation.value = false;
         learnableText.value   = learnable.value.learnable;
-        translation.value     = learnable.value.translation;
+
+        translations = learnable.value.translations
+                    || [ learnable.value.translation ];
+
+        translation = (
+            learnable.value.translation
+            || translations.find(t => t.authoritative)
+            || translations[0]
+        ).translation;
+
 
         guessInput.value.focus();
     });
 
     const check = () => {
-        const correct = matches(guess.value, translation.value);
+        const correct = matches(guess.value, translations.map(t => t.translation));
 
         showTranslation.value = ! correct;
 
-        correct && emit('done', true); // Solved = true
+        correct && emit('done', true, translation); // Solved = true
     };
 
     const clean = x => x.toLowerCase()
@@ -53,6 +65,10 @@
 
         return accepted.includes(clean(input));
     }
+
+    const say = (learnable, rate) => {
+        speak(learnable.value.learnable, usePage().props.user.course.language.name, rate);
+    }
 </script>
 
 <template>
@@ -63,7 +79,7 @@
                 :class="`text-${color}-900`"
                 title="Click to show translation"
             >
-                <img :src="speakerUrl" class="h-5 w-5 mt-0.5" @click="speak(learnable, 0.8)" />
+                <img :src="speakerUrl" class="h-5 w-5 mt-0.5" @click="say(learnable, 0.8)" />
 
                 <div @click="showTranslation = true">
                     {{ learnableText }}

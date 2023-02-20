@@ -20,11 +20,9 @@ const langVoiceMap = {
     Zulu             : null,
 };
 
-const languageNameToVoice = (language) => langVoiceMap[language] || `${language} Female`;
+const languageNameToVoice = (language: string) => langVoiceMap[language] || `${language} Female`;
 
-export const speak = (learnable, rate = 1) => {
-    const text = learnable.value.learnable;
-    const lang = learnable.value.language.name;
+export const speak = (text: string, language: string, rate = 1) => {
 
-    responsiveVoice.speak(text, languageNameToVoice(lang), { rate });
+    responsiveVoice.speak(text, languageNameToVoice(language), { rate });
 };

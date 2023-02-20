@@ -12,9 +12,9 @@
     const lastGuess = ref(null);
     const learnable = reactive({});
 
-    const next = () => {
+    const next = (guessed, translation) => {
         if (learnable.value) {
-            lastGuess.value = `${learnable.value.learnable} (${learnable.value.translation})`;
+            lastGuess.value = `${learnable.value.learnable} (${translation})`;
         }
 
         learnable.value = props.learnables.shift();
