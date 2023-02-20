@@ -45,7 +45,9 @@ class SecondaryPagesController extends Controller
     public function lesson(Api $api, int $lessonId): Response
     {
         return inertia('Lesson', [
-            'lesson' => $api->get("lessons/$lessonId")->json(),
+            'lesson' => $api->get("lessons/$lessonId", [
+                'withRelations' => [ 'exercises.learnables.translations' ],
+            ])->json(),
         ]);
     }
 }

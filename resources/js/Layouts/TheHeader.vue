@@ -13,13 +13,13 @@
         :class="`border-${currentPage.color}-900`"
     >
         <section class="flex justify-between">
-            <div class="relative pl-4">
+            <div class="hidden md:block relative pl-4">
                 <LearnAllIcon :class="`h-16 md:h-28 fill-stone-900`" />
                 <LearnAllIcon :class="`h-16 md:h-28 bottom-0 absolute fill-${currentPage.color}-900 opacity-20 blur-lg`" />
             </div>
 
-            <nav class="hidden md:flex justify-center items-center w-full md:w-1/4 text-stone-800">
-                <div v-if="$page.props.user" class="flex flex-col gap-2 text-right">
+            <nav class="flex justify-center items-center w-full md:w-1/4 text-stone-800">
+                <div v-if="$page.props.user" class="flex justify-between w-full md:flex-col gap-2 text-right">
                     <div
                         v-if="$page.props.user.course"
                         class="flex pt-1 pl-2 p-3 text-sm align-middle justify-center text-gray-500 hover:shadow-md hover:bg-gray-100 rounded-full"

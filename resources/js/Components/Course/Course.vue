@@ -30,7 +30,7 @@
         <hr class="mt-4 mb-6" />
     </div>
 
-    <section class="h-full overflow-auto scrollbar-hide flex flex-col gap-y-16">
+    <section class="h-full overflow-auto scrollbar-hide flex flex-col gap-y-16 py-5">
         <div v-for="level in levels" class="flex flex-1 gap-8 justify-center">
             <Card
                 v-for="(unit, index) in level"
