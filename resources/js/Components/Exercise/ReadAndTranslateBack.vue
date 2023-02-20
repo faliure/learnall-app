@@ -67,8 +67,8 @@
                     class="flex gap-3 py-2 items-center leading-none rounded-2xl text-xl cursor-pointer text-stone-900"
                     title="Click to show translation"
                 >
-                    <div class="flex-shrink-0 rounded-full p-5 mr-2 bg-stone-900 bg-opacity-10">
-                        <img :src="speakerUrl" class="h-8 w-8" @click="say" />
+                    <div class="flex-shrink-0 rounded-full p-3 mr-2 bg-stone-900 bg-opacity-10">
+                        <img :src="speakerUrl" class="h-6 w-6" @click="say" />
                     </div>
 
                     <div>
