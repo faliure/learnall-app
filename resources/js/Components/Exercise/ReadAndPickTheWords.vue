@@ -1,14 +1,12 @@
 <script setup>
-    import { onMounted, ref } from 'vue';
+    import { ref } from 'vue';
     import { usePage } from '@inertiajs/vue3';
     import PrimaryButton from '@/Components/PrimaryButton.vue';
     import { speak } from '@/Shared/tts';
     import speakerUrl from '/resources/img/speaker.png';
+    import { shuffle } from '@/Shared/arrays';
     import { translation, matches } from '@/Shared/translation';
-
-    onMounted(() => {
-        guessInput.value.focus()
-    });
+    import SelectableOptions from '@/Components/Exercise/Partials/SelectableOptions.vue';
 
     const props = defineProps({
         exercise: Object,
@@ -18,11 +16,32 @@
         'done',
     ]);
 
-    const learnable = props.exercise.learnables[0];
+    const learnable  = props.exercise.learnables[0];
+    const definition = props.exercise.definition;
+
+    const options = ref(shuffle([
+        ...translation(learnable).split(' '),
+        ...definition.fillers.slice(0, definition.fillerCount),
+    ]).map(o => ({ text: o, active: true })));
+
+    const selectedOptions = ref([]);
 
     const guess           = ref(null);
-    const guessInput      = ref(null);
     const showTranslation = ref(false);
+
+    const optionSelected = option => {
+        const selected = options.value.find(o => o.text === option.text);
+
+        selectedOptions.value.push({ ...selected });
+        selected.active = false;
+        guess.value = selectedOptions.value.map(o => o.text).join(' ');
+    };
+
+    const optionUnselected = option => {
+        options.value.find(o => o.text === option.text).active = true;
+        selectedOptions.value = selectedOptions.value.filter(o => o.text !== option.text);
+        guess.value = selectedOptions.value.map(o => o.text).join(' ');
+    };
 
     const check = () => {
         const correct = matches(guess.value, learnable.translations.map(t => t.translation));
@@ -55,14 +74,13 @@
                 </div>
             </div>
 
-            <textarea
-                ref="guessInput"
-                v-model="guess"
-                rows="5"
-                data-enable-grammarly="false"
-                class="mt-8 mx-auto w-full rounded-lg py-2 border-none placeholder-gray-400
-                     bg-gray-300 bg-opacity-5 ring-1 ring-blue-100 focus:ring-blue-400"
-            />
+            <div class="h-10 mt-3 text-sm font-bold border-b-2 border-b-stone border-dotted">
+                <SelectableOptions class="gap-2" :options="selectedOptions" @selected="optionUnselected" />
+            </div>
+
+            <div class="my-8 p-5 bg-stone-50 border-2 border-gray-300 rounded-2xl">
+                <SelectableOptions class="gap-4 text-sm font-semibold" :options="options" @selected="optionSelected" />
+            </div>
         </div>
 
         <div class="h-18 w-4/5 mx-auto text-xs">
