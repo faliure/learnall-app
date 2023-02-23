@@ -1,25 +1,52 @@
 <script setup>
-    import ReadAndTranslateBack from '@/Components/Exercise/ReadAndTranslateBack.vue';
-    import ReadAndPickTheWords from '@/Components/Exercise/ReadAndPickTheWords.vue';
+    import { ref, defineAsyncComponent } from 'vue';
 
     const props = defineProps({
         lesson: Object,
     });
 
-    const exercise = props.lesson.exercises[1];
+    const index = ref(0);
+
+    const exercises = props.lesson.exercises;
+
+    const typeComponent = exercise => ({
+        ReadAndTranslateBack: defineAsyncComponent(() => import("@/Components/Exercise/ReadAndTranslateBack.vue")),
+        ReadAndPickTheWords:  defineAsyncComponent(() => import("@/Components/Exercise/ReadAndPickTheWords.vue")),
+    })[exercise.type.type];
+
+    const hasMore = () => exercises.filter(e => ! e.solved).length > 1;
+
+    const next = () => {
+        if (! exercises.find(e => ! e.solved)) {
+            alert('yay');
+        } else if (index.value === exercises.length - 1) {
+            index.value = exercises.findIndex(e => ! e.solved);
+        } else {
+            index.value = exercises.findIndex((e, idx) => idx > index.value && ! e.solved);
+        }
+    }
+
+    const solved = () => {
+        exercises[index.value].solved = true;
+
+        next();
+    }
 </script>
 
 <template>
-    <div v-if="! exercise">Oops! Looks like this lesson has no exercises yet :-/</div>
+    <div v-if="! exercises">Oops! Looks like this lesson has no exercises yet :-/</div>
 
     <div v-else>
         <div class="w-4/5 mx-auto text-right text-lg font-extralight text-gray-600 opacity-60 mb-5">
-            {{ exercise.type.description }}
+            {{ exercises[index].type.description }}
         </div>
 
-        <ReadAndTranslateBack v-if="exercise.type.type === 'ReadAndTranslateBack'" :exercise="exercise" />
-        <ReadAndPickTheWords v-else-if="exercise.type.type === 'ReadAndPickTheWords'" :exercise="exercise" />
+        <component
+            :is="typeComponent(exercises[index])"
+            :exercise="exercises[index]"
+            :canSkip="hasMore()"
+            @solved="solved"
+            @skipped="next"
+        />
     </div>
-
-
 </template>

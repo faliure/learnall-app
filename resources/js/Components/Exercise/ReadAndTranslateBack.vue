@@ -1,10 +1,11 @@
 <script setup>
-    import { onMounted, ref } from 'vue';
+    import { onMounted, ref, watch } from 'vue';
     import { usePage } from '@inertiajs/vue3';
     import PrimaryButton from '@/Components/PrimaryButton.vue';
     import { speak } from '@/Shared/tts';
     import speakerUrl from '/resources/img/speaker.png';
     import { translation, matches } from '@/Shared/translation';
+    import CheckOrSkip from '@/Components/Exercise/Partials/CheckOrSkip.vue';
 
     onMounted(() => {
         guessInput.value.focus()
@@ -12,10 +13,12 @@
 
     const props = defineProps({
         exercise: Object,
+        canSkip: Boolean,
     });
 
     const emit = defineEmits([
-        'done',
+        'solved',
+        'skipped',
     ]);
 
     const learnable = props.exercise.learnables[0];
@@ -26,10 +29,10 @@
 
     const check = () => {
         const correct = matches(guess.value, learnable.translations.map(t => t.translation));
-        alert(correct ? "That's right! But that's all I have for now :-(" : 'Not really. But come back later, I may be wrong');
+
         showTranslation.value = ! correct;
 
-        correct && emit('done', true); // Solved = true
+        correct && emit('solved');
     };
 
     const say = e => speak(learnable.learnable, usePage().props.user.course.language.name, 0.8);
@@ -72,14 +75,11 @@
             </div>
         </div>
 
-        <div class="flex flex-row mx-auto justify-around gap-6 text-sm mt-6">
-            <PrimaryButton
-                @click="guess ? check() : null"
-                :class="guess ? 'cursor-pointer opacity-100' : 'cursor-not-allowed opacity-40'"
-                class="px-20 text-blue-100 bg-blue-900"
-            >
-                Check
-            </PrimaryButton>
-        </div>
+        <CheckOrSkip
+            :canCheck="!! guess"
+            :canSkip="canSkip"
+            @check="check"
+            @skip="$emit('skipped')"
+        />
     </section>
 </template>

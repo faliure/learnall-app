@@ -13,9 +13,10 @@
     });
 
     const emit = defineEmits([
-        'done',
+        'solved',
     ]);
 
+    console.log(props.exercise.learnables);
     const learnable  = props.exercise.learnables[0];
     const definition = props.exercise.definition;
 
@@ -45,10 +46,10 @@
 
     const check = () => {
         const correct = matches(guess.value, learnable.translations.map(t => t.translation));
-        alert(correct ? "That's right! But that's all I have for now :-(" : 'Not really. But come back later, I may be wrong');
+
         showTranslation.value = ! correct;
 
-        correct && emit('done', true); // Solved = true
+        correct && emit('solved');
     };
 
     const say = e => speak(learnable.learnable, usePage().props.user.course.language.name, 0.8);
