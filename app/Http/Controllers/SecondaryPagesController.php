@@ -33,21 +33,19 @@ class SecondaryPagesController extends Controller
         ]);
     }
 
-    public function unit(Api $api, string $unitId): Response
+    public function unit(Api $api, int $position): Response
     {
         return inertia('Unit', [
-            'unit' => $api->get("units/$unitId", [
+            'unit' => $api->get("activeCourse/units/$position", [
                 'withRelations' => [ 'lessons' ],
             ])->json(),
         ]);
     }
 
-    public function lesson(Api $api, int $lessonId): Response
+    public function lesson(Api $api, int $unitPosition, int $lessonPosition): Response
     {
         return inertia('Lesson', [
-            'lesson' => $api->get("lessons/$lessonId", [
-                'withRelations' => [ 'exercises.learnables.translations' ],
-            ])->json(),
+            'lesson' => $api->get("activeCourse/units/$unitPosition/lessons/$lessonPosition")->json(),
         ]);
     }
 }

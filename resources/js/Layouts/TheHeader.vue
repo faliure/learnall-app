@@ -22,7 +22,7 @@
                 <div v-if="$page.props.user" class="flex justify-between w-full md:flex-col gap-2 text-right">
                     <div
                         v-if="$page.props.user.course"
-                        class="flex pt-1 pl-2 p-3 text-sm align-middle justify-center text-gray-500 hover:shadow-md hover:bg-gray-100 rounded-full"
+                        class="flex pt-1 pl-2 p-3 text-sm align-middle justify-center text-gray-500 hover:shadow-md hover:bg-gray-100 rounded-full md:mx-auto"
                     >
                         <Link href="/courses">
                             <CourseFlag

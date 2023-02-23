@@ -6,7 +6,7 @@
 </script>
 
 <template>
-    <Link :href="`units/${unit.id}`" class="flex flex-col items-center">
+    <Link :href="`units/${unit.position}`" class="flex flex-col items-center">
         <div
             class="h-16 w-16 sm:h-24 sm:w-24 rounded-full opacity-80 hover:opacity-100"
             :class="index === 3 ? 'border-8 border-blue-900' : ''"

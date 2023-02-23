@@ -11,6 +11,7 @@
         <LessonPreview
             v-for="lesson in unit.lessons"
             :key="lesson.id"
+            :unit="unit"
             :lesson="lesson"
         />
     </section>

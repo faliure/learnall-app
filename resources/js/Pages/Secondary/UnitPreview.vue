@@ -1,12 +1,14 @@
 <script setup>
-  defineProps({ unit: Object });
+    defineProps({
+        unit: Object,
+    });
 </script>
 
 <template>
-  <Link
-    :href="`/units/${unit.id}`"
-    class="py-2 rounded-xl border border-gray text-center font-bold bg-emerald-900 bg-opacity-5 hover:bg-opacity-20"
-  >
-    {{ unit.name }}
-  </Link>
+    <Link
+        :href="`/units/${unit.position}`"
+        class="py-2 rounded-xl border border-gray text-center font-bold bg-emerald-900 bg-opacity-5 hover:bg-opacity-20"
+    >
+        {{ unit.name }}
+    </Link>
 </template>
